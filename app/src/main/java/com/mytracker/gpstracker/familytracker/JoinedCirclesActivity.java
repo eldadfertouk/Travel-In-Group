@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.ArrayList;
 
@@ -37,11 +38,11 @@ public class JoinedCirclesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_joined_circles);
+        setContentView( R.layout.activity_joined_circles);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerviewJoined);
         layoutManager = new LinearLayoutManager(this);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("Joined Circles");
+        toolbar.setTitle("מקושר לטיולים:");
         setSupportActionBar(toolbar);
 
         if(getSupportActionBar()!=null)
@@ -93,7 +94,7 @@ public class JoinedCirclesActivity extends AppCompatActivity {
 
                     }
 
-                   Toast.makeText(getApplicationContext(),"Showing joined circles",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(),"מקושר לטיולים אלה:",Toast.LENGTH_SHORT).show();
                     recycleradapter = new JoinedMembersAdapter(myList,getApplicationContext());
                     recyclerView.setAdapter(recycleradapter);
                     recycleradapter.notifyDataSetChanged();
@@ -102,7 +103,7 @@ public class JoinedCirclesActivity extends AppCompatActivity {
                 }
                 else
                 {
-                   Toast.makeText(getApplicationContext(),"You have not joined any circle yet!",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(),"טרם הצטרפת לטיול",Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(null);
                 }
 

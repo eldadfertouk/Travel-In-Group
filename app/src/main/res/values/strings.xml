@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Family GPS Tracker</string>
-    <string name="title_activity_maps">Family GPS Tracker</string>
-    <string name="title_activity_my_navigation_tutorial">Family GPS Tracker</string>
+    <string name="app_name">Travel In Group</string>
+    <string name="title_activity_maps">Travel In Group</string>
+    <string name="title_activity_my_navigation_tutorial">Group GPS Tracker</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

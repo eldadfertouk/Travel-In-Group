@@ -17,15 +17,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by Haroon on 12/26/2017.
- */
 
 public class JoinedMembersAdapter extends RecyclerView.Adapter<JoinedMembersAdapter.JoinedMembersViewHolder>
 {
@@ -45,7 +43,7 @@ public class JoinedMembersAdapter extends RecyclerView.Adapter<JoinedMembersAdap
     @Override
     public JoinedMembersAdapter.JoinedMembersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.joined_card_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.joined_card_layout,parent,false);
         JoinedMembersAdapter.JoinedMembersViewHolder membersViewHolder = new JoinedMembersAdapter.JoinedMembersViewHolder(view,c,nameList);
         return membersViewHolder;
     }
@@ -106,7 +104,7 @@ public class JoinedMembersAdapter extends RecyclerView.Adapter<JoinedMembersAdap
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                         if(task.isSuccessful())
                                                         {
-                                                           Toast.makeText(ctx,"Unjoined successfully",Toast.LENGTH_SHORT).show();
+                                                           Toast.makeText(ctx,"הקישור לטיול בוטל בהצלחה!",Toast.LENGTH_SHORT).show();
                                                         }
                                                 }
                                             });

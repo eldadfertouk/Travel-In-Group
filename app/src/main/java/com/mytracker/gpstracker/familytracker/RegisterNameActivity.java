@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.Date;
@@ -35,9 +36,9 @@ public class RegisterNameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_name);
+        setContentView( R.layout.activity_register_name);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("Your Profile");
+        toolbar.setTitle("פרופיל המשתמש שלך");
         setSupportActionBar(toolbar);
         e1 = (EditText)findViewById(R.id.editTextPass);
         b1 = (Button)findViewById(R.id.button);
@@ -119,7 +120,7 @@ public class RegisterNameActivity extends AppCompatActivity {
             }
             else
             {
-               Toast.makeText(getApplicationContext(),"You must choose your profile picture.",Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(),"חובה לבחור תמונת פרופיל",Toast.LENGTH_SHORT).show();
             }
 
         }

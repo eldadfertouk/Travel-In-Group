@@ -50,6 +50,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -80,9 +81,9 @@ public class MyNavigationTutorial extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_navigation_tutorial);
+        setContentView( R.layout.activity_my_navigation_tutorial);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("Family GPS Tracker");
+        toolbar.setTitle("Travel In Group");
         setSupportActionBar(toolbar);
 
         auth = FirebaseAuth.getInstance();
@@ -156,7 +157,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                 }catch(NullPointerException e)
                 {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"Could not connect to the network. Please try again later",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"אין חיבור תקין לאינטרנט,בדוק חיבורים או נסה מאוחר יותר",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -300,10 +301,57 @@ public class MyNavigationTutorial extends AppCompatActivity
                 });
 
             }
+
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
                 Intent myIntent = new Intent(MyNavigationTutorial.this, JoinedCirclesActivity.class);
+                startActivity(myIntent);
+            }
+
+        }
+
+
+        else if(id == R.id.sendHelpAlert) {
+            if (interstitialAd.isLoaded()) {
+                interstitialAd.show();
+                interstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                        interstitialAd.loadAd(new AdRequest.Builder().build());
+                        Intent myIntent = new Intent(MyNavigationTutorial.this, SendHelpAlertsActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+            } else {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+                Intent myIntent = new Intent(MyNavigationTutorial.this, SendHelpAlertsActivity.class);
+                startActivity(myIntent);
+            }
+
+        }
+
+        else if(id == R.id.alertCenter)
+        {
+            if(interstitialAd.isLoaded())
+            {
+                interstitialAd.show();
+                interstitialAd.setAdListener(new AdListener()
+                {
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                        interstitialAd.loadAd(new AdRequest.Builder().build());
+                        Intent myIntent = new Intent(MyNavigationTutorial.this,AlertCenterActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+            }
+            else
+            {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+                Intent myIntent = new Intent(MyNavigationTutorial.this,AlertCenterActivity.class);
                 startActivity(myIntent);
             }
 

@@ -29,8 +29,11 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
 
     <Button
         android:id="@+id/button"
@@ -46,6 +49,18 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextPass"
+        android:onClick="forgotPassword"
+        android:layout_marginTop="28dp"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Forgot Password?" />
 
 
 </RelativeLayout>

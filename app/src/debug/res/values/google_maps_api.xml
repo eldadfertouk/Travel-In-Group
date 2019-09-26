@@ -4,15 +4,10 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=BB:CF:32:53:74:04:9E:DD:A1:DD:D7:FC:C9:91:DF:EF:1B:87:32:39%3Bcom.example.haroon.tracker360
 
     You can also add your credentials to an existing key, using these values:
 
-    Package name:
-    BB:CF:32:53:74:04:9E:DD:A1:DD:D7:FC:C9:91:DF:EF:1B:87:32:39
 
-    SHA-1 certificate fingerprint:
-    BB:CF:32:53:74:04:9E:DD:A1:DD:D7:FC:C9:91:DF:EF:1B:87:32:39
 
     Alternatively, follow the directions here:
     https://developers.google.com/maps/documentation/android/start#get-key
@@ -21,6 +16,6 @@
     string in this file.
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-
+       AIzaSyCX3FX321zM59NyabgXp-DyrqH8S04NWOw
     </string>
 </resources>

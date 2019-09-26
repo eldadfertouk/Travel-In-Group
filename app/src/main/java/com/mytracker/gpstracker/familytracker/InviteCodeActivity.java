@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class InviteCodeActivity extends AppCompatActivity {
 
@@ -42,9 +43,9 @@ public class InviteCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invite_code);
+        setContentView( R.layout.activity_invite_code);
         toolbar =(Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("Invite Code");
+        toolbar.setTitle("קוד הצטרפות");
         dialog = new ProgressDialog(this);
         t6_done = (TextView)findViewById(R.id.textView6);
         setSupportActionBar(toolbar);
@@ -109,7 +110,7 @@ public class InviteCodeActivity extends AppCompatActivity {
     {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("text/plain");
-        i.putExtra(Intent.EXTRA_TEXT,"Hello, My GPS Tracker Circle code is "+t4_code.getText().toString()+". Please join my circle.");
+        i.putExtra(Intent.EXTRA_TEXT,"שלום, קוד ההצטרפות לטיול הוא:"+t4_code.getText().toString()+".אנא הירשם לטיול");
         startActivity(i.createChooser(i,"Share using:"));
     }
 
@@ -117,7 +118,7 @@ public class InviteCodeActivity extends AppCompatActivity {
     {
 
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Creating new Profile. Please wait");
+        dialog.setMessage("יוצר פרופיל משתמש חדש,אנא המתן");
         dialog.setCancelable(false);
         dialog.show();
 
@@ -166,7 +167,7 @@ public class InviteCodeActivity extends AppCompatActivity {
                                                             }
                                                             else
                                                             {
-                                                                Toast.makeText(getApplicationContext(),"Could not upload user image",Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getApplicationContext(),"לא ניתן להעלות תמונה כעת",Toast.LENGTH_SHORT).show();
                                                             }
 
 
@@ -186,7 +187,7 @@ public class InviteCodeActivity extends AppCompatActivity {
                    }
                    else
                    {
-                      Toast.makeText(getApplicationContext(),"Could not create account. Try again later",Toast.LENGTH_SHORT).show();
+                      Toast.makeText(getApplicationContext(),"לא ניתן ליצור חשבון עתה, אין חיבור לאינטרנט , נסה מאוחר יותר",Toast.LENGTH_SHORT).show();
                    }
 
                     }
@@ -204,7 +205,7 @@ public class InviteCodeActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                                Toast.makeText(getApplicationContext(),"Email sent for verification. Please check email.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"נשלח דואר לאימות חשבונך , אנא בדוק את הדואר ואמת החשבון",Toast.LENGTH_SHORT).show();
                                 finish();
                                 auth.signOut();
 

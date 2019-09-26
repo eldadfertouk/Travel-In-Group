@@ -1,8 +1,6 @@
 package com.mytracker.gpstracker.familytracker;
 
-/**
- * Created by Haroon on 12/22/2017.
- */
+
 
 public class AddCircle
 {

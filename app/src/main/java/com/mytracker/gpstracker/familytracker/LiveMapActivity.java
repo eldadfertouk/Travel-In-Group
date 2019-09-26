@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 
@@ -46,7 +47,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live_map);
+        setContentView( R.layout.activity_live_map);
         toolbar = (Toolbar)findViewById(R.id.toolbar22);
 
         myOptions = new MarkerOptions();
@@ -152,9 +153,6 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
             }
         });
-
-
-
 
     }
 

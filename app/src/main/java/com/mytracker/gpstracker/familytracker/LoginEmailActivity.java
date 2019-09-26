@@ -1,9 +1,13 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.ProviderQueryResult;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class LoginEmailActivity extends AppCompatActivity {
 
@@ -31,7 +36,7 @@ public class LoginEmailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_email);
+        setContentView( R.layout.activity_login_email);
         e1_email = (EditText)findViewById(R.id.editTextPass);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("Sign In");
@@ -107,5 +112,37 @@ public class LoginEmailActivity extends AppCompatActivity {
                });
 
     }
+
+    public void forgotPassword(View v)
+    {
+        final EditText taskEditText = new EditText(this);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Add a new task")
+                .setMessage("What do you want to do next?")
+                .setView(taskEditText)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String task = String.valueOf(taskEditText.getText());
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(task)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(LoginEmailActivity.this,"Please check your email",Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            Toast.makeText(LoginEmailActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
 
 }

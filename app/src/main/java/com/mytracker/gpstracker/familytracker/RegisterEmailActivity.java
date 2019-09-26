@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.ProviderQueryResult;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class RegisterEmailActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class RegisterEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById( R.id.toolbar);
         e1_email = (EditText)findViewById(R.id.editTextPass);
             auth = FirebaseAuth.getInstance();
         dialog = new ProgressDialog(this);
@@ -97,7 +98,7 @@ public class RegisterEmailActivity extends AppCompatActivity {
                         }
                         else
                         {
-                          Toast.makeText(getApplicationContext(),"You already have an account. Please login.",Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getApplicationContext(),"כבר יש חשבון כזה. נסה כניסה ישירה.",Toast.LENGTH_SHORT).show();
                             Intent myIntent = new Intent(RegisterEmailActivity.this,LoginEmailActivity.class);
                             startActivity(myIntent);
                             finish();

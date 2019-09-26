@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class JoinCircleActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class JoinCircleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_circle);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById( R.id.toolbar);
         toolbar.setTitle("Join a Circle");
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -120,7 +121,7 @@ public class JoinCircleActivity extends AppCompatActivity {
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                       Toast.makeText(getApplicationContext(),"You have joined this circle successfully",Toast.LENGTH_SHORT).show();
+                                                       Toast.makeText(getApplicationContext(),"הצטרפת לטיול הזה בהצלחה ,טיול נעים!",Toast.LENGTH_SHORT).show();
                                                         finish();
                                                         Intent myIntent = new Intent(JoinCircleActivity.this,MyNavigationTutorial.class);
                                                         startActivity(myIntent);
@@ -133,7 +134,7 @@ public class JoinCircleActivity extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        Toast.makeText(getApplicationContext(),"Could not join, try again",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),"לא ניתו להצטרף לטיול,נסה מאוחר יותר",Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -142,7 +143,7 @@ public class JoinCircleActivity extends AppCompatActivity {
                 }
                 else
                 {
-                  Toast.makeText(getApplicationContext(),"Invalid circle code entered",Toast.LENGTH_SHORT).show();
+                  Toast.makeText(getApplicationContext(),"הקוד שהוזן אינו תקף או לא תקין",Toast.LENGTH_SHORT).show();
                 }
             }
 

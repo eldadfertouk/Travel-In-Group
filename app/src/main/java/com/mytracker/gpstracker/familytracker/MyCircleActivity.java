@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class MyCircleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_circle);
+        setContentView( R.layout.activity_my_circle);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
         auth = FirebaseAuth.getInstance();
@@ -102,7 +103,7 @@ public class MyCircleActivity extends AppCompatActivity {
                             }
                         });
                     }
-                   Toast.makeText(getApplicationContext(),"Showing circle members",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(),"מציג חברים בטיול",Toast.LENGTH_SHORT).show();
                     recycleradapter = new MembersAdapter(nameList,getApplicationContext());
 
                     recyclerView.setAdapter(recycleradapter);
@@ -113,7 +114,7 @@ public class MyCircleActivity extends AppCompatActivity {
 
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"List is empty.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"הרשימה ריקה,אין מטיילים",Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(null);
                 }
 

@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
+
 public class RegisterPasswordActivity extends AppCompatActivity {
 
     EditText e1_password;
@@ -21,7 +23,7 @@ public class RegisterPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_password);
+        setContentView( R.layout.activity_register_password);
         e1_password = (EditText)findViewById(R.id.editTextPassword);
         toolbar = (Toolbar)findViewById(R.id.toolbarPassword);
         b1_password = (Button)findViewById(R.id.buttonPassword);

@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,13 +49,7 @@ public class LocationShareService extends Service implements LocationListener, G
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-
-
         throw new UnsupportedOperationException("Not yet implemented");
-
-
-
-
     }
 
     @Override
@@ -90,11 +85,11 @@ public class LocationShareService extends Service implements LocationListener, G
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(client, request, this);
 
-        notification.setSmallIcon(R.drawable.location);
+        notification.setSmallIcon( R.drawable.location);
         notification.setTicker("Notification.");
         notification.setWhen(System.currentTimeMillis());
-        notification.setContentTitle("Family Tracker App");
-        notification.setContentText("You are sharing your location.!");
+        notification.setContentTitle("Travel In Group App");
+        notification.setContentText("מיקומך גלוי ומשותף כעת !");
         notification.setDefaults(Notification.DEFAULT_SOUND);
 
 
@@ -156,7 +151,7 @@ public class LocationShareService extends Service implements LocationListener, G
                     public void onComplete(@NonNull Task<Void> task) {
                         if(!task.isSuccessful())
                         {
-                            Toast.makeText(getApplicationContext(),"Could not share Location.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"לא ניתן לשתף מיקום כעת",Toast.LENGTH_SHORT).show();
                         }
 
                     }

@@ -15,6 +15,9 @@
             android:id="@+id/joinedCircle"
             android:title="Joined Circles" />
 
+        <item
+            android:id="@+id/alertCenter"
+            android:title="Alerts Center" />
 
 
 
@@ -23,7 +26,9 @@
             android:title="Invite Friends" />
 
 
-        
+        <item
+            android:id="@+id/sendHelpAlert"
+            android:title="Send Help Alert" />
 
 
         <item

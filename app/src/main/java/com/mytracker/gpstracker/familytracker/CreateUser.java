@@ -1,8 +1,5 @@
 package com.mytracker.gpstracker.familytracker;
 
-/**
- * Created by Haroon on 12/19/2017.
- */
 
 public class CreateUser
 {

@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class LoginPasswordActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class LoginPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_password);
+        setContentView( R.layout.activity_login_password);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("Password");
         auth = FirebaseAuth.getInstance();
@@ -108,7 +109,7 @@ public class LoginPasswordActivity extends AppCompatActivity {
                                             dialog.dismiss();
                                             finish();
                                             FirebaseAuth.getInstance().signOut();
-                                            Toast.makeText(getApplicationContext(),"This email is not verified yet. Please check your email",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),"כתובת דואר לא אומתה, לא ניתן להמשיך ללא אימות",Toast.LENGTH_SHORT).show();
                                             Intent myIntent = new Intent(LoginPasswordActivity.this,MainActivity.class);
                                             startActivity(myIntent);
                                         }
@@ -116,7 +117,7 @@ public class LoginPasswordActivity extends AppCompatActivity {
                                     else
                                     {
                                         dialog.dismiss();
-                                       Toast.makeText(getApplicationContext(),"Wrong username/password",Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(getApplicationContext(),"שם משתמש או ססמה שגויים",Toast.LENGTH_SHORT).show();
                                     }
                         }
                     });
