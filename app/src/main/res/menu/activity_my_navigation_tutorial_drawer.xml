@@ -5,35 +5,34 @@
 
         <item
             android:id="@+id/joinCircle"
-            android:title="Join a Circle" />
+            android:title="@string/join_circle" />
 
         <item
             android:id="@+id/myCircle"
-            android:title="My Circle" />
+            android:title="@string/my_circle" />
 
         <item
             android:id="@+id/joinedCircle"
-            android:title="Joined Circles" />
+            android:title="@string/joined_circle" />
 
         <item
             android:id="@+id/alertCenter"
-            android:title="Alerts Center" />
-
+            android:title="@string/alerts_center" />
 
 
         <item
             android:id="@+id/inviteFriends"
-            android:title="Invite Friends" />
+            android:title="@string/invite_friends" />
 
 
         <item
             android:id="@+id/sendHelpAlert"
-            android:title="Send Help Alert" />
+            android:title="@string/send_alert_help" />
 
 
         <item
             android:id="@+id/signout"
-            android:title="Signout" />
+            android:title="@string/sign_out" />
 
     </group>
 

@@ -7,5 +7,36 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="bannerid"></string>
+
+    <string name="bannerid">פרסומות</string>
+    <string name="join_circle">הצטרף לטיול</string>
+    <string name="my_circle">הטיול שלי</string>
+    <string name="joined_circle">הטיולים שהצטרפתי</string>
+    <string name="alerts_center">מרכז ההתראות</string>
+    <string name="invite_friends">הזמן מטיילים לטיול</string>
+    <string name="send_help_alert">קריאת מצוקה</string>
+    <string name="sign_out">יציאה מהיישום</string>
+    <string name="stop_sharing_location">הפסק שיתוף מיקום</string>
+    <string name="send_location">הפעל שיתוף מיקום</string>
+    <string name="invite_members">הזמנת מטיילים לטיול</string>
+    <string name="alert_sos">הפעלת מצב מצוקה, תשלח איתות לכל המטיילים בקבוצתך</string>
+    <string name="cancel_alert">ביטול הפעלת התראה</string>
+    <string name="next">הבא</string>
+    <string name="create_password">צור סיסמה</string>
+    <string name="password_lenth_alert">על הסיסמה להיות באורך  6 תווים לפחות</string>
+    <string name="enter_your_name">הקלידו שם תצוגה</string>
+    <string name="this_is_your_map_diplay_anme">זה השם שיופיע לצד האיקון שלכם על מפה</string>
+    <string name="add_photo">הוספת תמונת פרופיל</string>
+    <string name="have_an_account">כניסה עם חשבון קיים</string>
+    <string name="create_new_account">יצירת חשבון משתמש חדש</string>
+    <string name="enter_email_address">הזינו כתובת דואר אלקטרוני פעילה</string>
+    <string name="forgot_password">שכחתי סיסמה</string>
+    <string name="invite_members_to_the_tour">קוד זה משמש לצירוף מטיילים נוספים לקבוצתך, שלחו את הקוד למשתמשים שרוצים לצרף</string>
+    <string name="sharing_the_code"> שתפו את הקוד עם משתמשים נוספים באמצעות הודעה</string>
+    <string name="name">שם</string>
+    <string name="email">כתובת דואל</string>
+    <string name="last_seen">נראה לאחרונה בשעה</string>
+    <string name="share_location">הפעלת שיתוף מיקום</string>
+    <string name="stope_share_location">הפסקת שיתוף מיקום</string>
+    <string name="send_alert_help">שידור אות מצוקה או חירום</string>
 </resources>
