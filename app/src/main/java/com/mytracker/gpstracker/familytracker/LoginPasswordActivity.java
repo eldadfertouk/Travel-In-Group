@@ -36,15 +36,15 @@ public class LoginPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_login_password);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Password");
         auth = FirebaseAuth.getInstance();
         dialog = new ProgressDialog(this);
 
 
         setSupportActionBar(toolbar);
-        e1_pass = (EditText)findViewById(R.id.editTextPass);
-        b1_password = (Button)findViewById(R.id.button);
+        e1_pass = findViewById(R.id.editTextPass);
+        b1_password = findViewById(R.id.button);
 
         Intent intent = getIntent();
         if (intent!=null)

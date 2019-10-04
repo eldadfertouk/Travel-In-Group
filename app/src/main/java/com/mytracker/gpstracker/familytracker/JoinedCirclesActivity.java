@@ -39,9 +39,9 @@ public class JoinedCirclesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_joined_circles);
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerviewJoined);
+        recyclerView = findViewById(R.id.recyclerviewJoined);
         layoutManager = new LinearLayoutManager(this);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("מקושר לטיולים:");
         setSupportActionBar(toolbar);
 

@@ -38,13 +38,13 @@ public class JoinCircleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_circle);
-        toolbar = (Toolbar)findViewById( R.id.toolbar);
+        toolbar = findViewById( R.id.toolbar);
         toolbar.setTitle("Join a Circle");
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
 
-        pinView = (Pinview)findViewById(R.id.mypinview);
+        pinView = findViewById(R.id.mypinview);
 
         reference = FirebaseDatabase.getInstance().getReference().child("Users");
         currentReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());

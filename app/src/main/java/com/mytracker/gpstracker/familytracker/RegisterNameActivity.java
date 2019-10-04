@@ -37,18 +37,18 @@ public class RegisterNameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_register_name);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("פרופיל המשתמש שלך");
         setSupportActionBar(toolbar);
-        e1 = (EditText)findViewById(R.id.editTextPass);
-        b1 = (Button)findViewById(R.id.button);
+        e1 = findViewById(R.id.editTextPass);
+        b1 = findViewById(R.id.button);
 
 
 
 
         b1.setEnabled(false);
         b1.setBackgroundColor(Color.parseColor("#faebd7"));
-        circleImageView = (CircleImageView)findViewById(R.id.profile_image);
+        circleImageView = findViewById(R.id.profile_image);
 
         Intent intent = getIntent();
         if (intent!=null) {

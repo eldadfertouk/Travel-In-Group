@@ -48,7 +48,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_live_map);
-        toolbar = (Toolbar)findViewById(R.id.toolbar22);
+        toolbar = findViewById(R.id.toolbar22);
 
         myOptions = new MarkerOptions();
         Intent intent = getIntent();

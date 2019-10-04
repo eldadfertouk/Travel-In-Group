@@ -44,10 +44,10 @@ public class InviteCodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_invite_code);
-        toolbar =(Toolbar)findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("קוד הצטרפות");
         dialog = new ProgressDialog(this);
-        t6_done = (TextView)findViewById(R.id.textView6);
+        t6_done = findViewById(R.id.textView6);
         setSupportActionBar(toolbar);
 
         if(getSupportActionBar()!=null)
@@ -60,7 +60,7 @@ public class InviteCodeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference().child("Users");
         firebaseStorageReference = FirebaseStorage.getInstance().getReference().child("Profile_images");
-        t4_code = (TextView)findViewById(R.id.textView4);
+        t4_code = findViewById(R.id.textView4);
 
         Intent intent = getIntent();
         if (intent!=null)
@@ -111,7 +111,7 @@ public class InviteCodeActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("text/plain");
         i.putExtra(Intent.EXTRA_TEXT,"שלום, קוד ההצטרפות לטיול הוא:"+t4_code.getText().toString()+".אנא הירשם לטיול");
-        startActivity(i.createChooser(i,"Share using:"));
+        startActivity( Intent.createChooser (i,"Share using:"));
     }
 
     public void Register(View v)

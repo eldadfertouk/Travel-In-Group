@@ -37,8 +37,8 @@ public class LoginEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_login_email);
-        e1_email = (EditText)findViewById(R.id.editTextPass);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        e1_email = findViewById(R.id.editTextPass);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Sign In");
         setSupportActionBar(toolbar);
         dialog = new ProgressDialog(this);
@@ -47,7 +47,7 @@ public class LoginEmailActivity extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-        b1_emailnext = (Button)findViewById(R.id.button);
+        b1_emailnext = findViewById(R.id.button);
         b1_emailnext.setEnabled(false);
         b1_emailnext.setBackgroundColor(Color.parseColor("#faebd7"));
         final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";

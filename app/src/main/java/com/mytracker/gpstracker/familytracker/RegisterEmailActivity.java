@@ -32,12 +32,12 @@ public class RegisterEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
-        toolbar = (Toolbar)findViewById( R.id.toolbar);
-        e1_email = (EditText)findViewById(R.id.editTextPass);
+        toolbar = findViewById( R.id.toolbar);
+        e1_email = findViewById(R.id.editTextPass);
             auth = FirebaseAuth.getInstance();
         dialog = new ProgressDialog(this);
 
-        b1_emailnext = (Button)findViewById(R.id.button);
+        b1_emailnext = findViewById(R.id.button);
         b1_emailnext.setEnabled(false);
         b1_emailnext.setBackgroundColor(Color.parseColor("#faebd7"));
         toolbar.setTitle("Email Address");

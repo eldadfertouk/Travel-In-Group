@@ -82,7 +82,7 @@ public class JoinedMembersAdapter extends RecyclerView.Adapter<JoinedMembersAdap
             reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("JoinedCircles");
             currentReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-            name_txt = (TextView)itemView.findViewById(R.id.item_title);
+            name_txt = itemView.findViewById(R.id.item_title);
             i1 =  itemView.findViewById(R.id.itemImage);
         }
 

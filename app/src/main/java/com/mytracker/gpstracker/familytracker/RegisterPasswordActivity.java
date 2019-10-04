@@ -24,9 +24,9 @@ public class RegisterPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_register_password);
-        e1_password = (EditText)findViewById(R.id.editTextPassword);
-        toolbar = (Toolbar)findViewById(R.id.toolbarPassword);
-        b1_password = (Button)findViewById(R.id.buttonPassword);
+        e1_password = findViewById(R.id.editTextPassword);
+        toolbar = findViewById(R.id.toolbarPassword);
+        b1_password = findViewById(R.id.buttonPassword);
 
         Intent intent = getIntent();
         if (intent!=null) {

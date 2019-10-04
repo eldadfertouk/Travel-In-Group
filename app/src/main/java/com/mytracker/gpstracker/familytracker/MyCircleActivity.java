@@ -45,13 +45,13 @@ public class MyCircleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_my_circle);
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("My Circle");
 
 
