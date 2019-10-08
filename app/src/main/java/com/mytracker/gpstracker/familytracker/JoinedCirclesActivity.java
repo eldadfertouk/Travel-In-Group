@@ -1,10 +1,10 @@
 package com.mytracker.gpstracker.familytracker;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -51,11 +51,7 @@ public class JoinedCirclesActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-
         myList = new ArrayList<>();
-
-
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         auth = FirebaseAuth.getInstance();

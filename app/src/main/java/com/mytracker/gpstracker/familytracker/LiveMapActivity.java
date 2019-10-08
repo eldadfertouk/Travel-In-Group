@@ -1,12 +1,13 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -71,7 +72,6 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
         }
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -83,16 +83,16 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-              //  Toast.makeText(getApplicationContext(),"onAdded",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"onAdded",Toast.LENGTH_SHORT).show();
 
 
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            //   CreateUser user = dataSnapshot.getValue(CreateUser.class);
+               CreateUser user = dataSnapshot.getValue(CreateUser.class);
 
-              //  Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
 
 
 
@@ -177,13 +177,13 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                 {
                     nameTxt.setText(name);
                     dateTxt.setText(dateTxt.getText().toString() + prevdate);
-                    Picasso.with(getApplicationContext()).load(prevImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
+                    Picasso.get().load(prevImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
                 }
                 else
                 {
                     nameTxt.setText(myName);
                     dateTxt.setText(dateTxt.getText().toString() + myDate);
-                    Picasso.with(getApplicationContext()).load(myImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
+                    Picasso.get().load(myImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
                 }
 
 

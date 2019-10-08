@@ -3,10 +3,10 @@ package com.mytracker.gpstracker.familytracker;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -101,7 +101,7 @@ public class LoginPasswordActivity extends AppCompatActivity {
                                         {
                                             dialog.dismiss();
                                             finish();
-                                            Intent myIntent = new Intent(LoginPasswordActivity.this,MyNavigationTutorial.class);
+                                            Intent myIntent = new Intent(LoginPasswordActivity.this, MyTour.class);
                                             startActivity(myIntent);
                                         }
                                         else

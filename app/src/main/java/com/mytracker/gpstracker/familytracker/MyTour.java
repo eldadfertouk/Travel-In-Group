@@ -7,17 +7,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,7 +58,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MyNavigationTutorial extends AppCompatActivity
+public class MyTour extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -88,7 +89,7 @@ public class MyNavigationTutorial extends AppCompatActivity
 
         auth = FirebaseAuth.getInstance();
 
-        interstitialAd = new InterstitialAd(this);
+      /*  interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdUnitId("");
         interstitialAd.loadAd(new AdRequest.Builder().build());
 
@@ -97,7 +98,7 @@ public class MyNavigationTutorial extends AppCompatActivity
         {
             interstitialAd.show();
             interstitialAd.loadAd(new AdRequest.Builder().build());
-        }
+        }*/
 
 
 
@@ -117,18 +118,16 @@ public class MyNavigationTutorial extends AppCompatActivity
         textEmail = header.findViewById(R.id.emailTxt);
         circleImageView = header.findViewById(R.id.imageView2);
 
+           //aSwitch.setOnCheckedChangeListener(getApplicationContext());
 
-        //   aSwitch.setOnCheckedChangeListener(getApplicationContext());
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.frag_map);
         mapFragment.getMapAsync(this);
 
 
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MyNavigationTutorial.this,
+                ActivityCompat.requestPermissions( MyTour.this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         1000);
             }
@@ -153,7 +152,7 @@ public class MyNavigationTutorial extends AppCompatActivity
 
                     textName.setText(myName);
                     textEmail.setText(myEmail);
-                    Picasso.with(MyNavigationTutorial.this).load(myProfileImage).placeholder(R.drawable.defaultprofile).into(circleImageView);
+                    Picasso.get().load(myProfileImage).placeholder(R.drawable.defaultprofile).into(circleImageView);
                 }catch(NullPointerException e)
                 {
                     e.printStackTrace();
@@ -198,10 +197,10 @@ public class MyNavigationTutorial extends AppCompatActivity
                 auth.signOut();
                 finish();
 
-                Intent myIntent2 = new Intent(MyNavigationTutorial.this,LocationShareService.class);
+                Intent myIntent2 = new Intent( MyTour.this,LocationShareService.class);
                 stopService(myIntent2);
 
-                Intent i = new Intent(MyNavigationTutorial.this, MainActivity.class);
+                Intent i = new Intent( MyTour.this, MainActivity.class);
                 startActivity(i);
             }
         } else if (id == R.id.joinCircle)
@@ -216,7 +215,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent(MyNavigationTutorial.this, JoinCircleActivity.class);
+                        Intent myIntent = new Intent( MyTour.this, JoinCircleActivity.class);
                         startActivity(myIntent);
 
                     }
@@ -225,7 +224,7 @@ public class MyNavigationTutorial extends AppCompatActivity
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent(MyNavigationTutorial.this, JoinCircleActivity.class);
+                Intent myIntent = new Intent( MyTour.this, JoinCircleActivity.class);
                 startActivity(myIntent);
 
             }
@@ -243,7 +242,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent intent = new Intent(MyNavigationTutorial.this, MyCircleActivity.class);
+                        Intent intent = new Intent( MyTour.this, MyCircleActivity.class);
                         startActivity(intent);
 
                     }
@@ -253,7 +252,7 @@ public class MyNavigationTutorial extends AppCompatActivity
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent intent = new Intent(MyNavigationTutorial.this, MyCircleActivity.class);
+                Intent intent = new Intent( MyTour.this, MyCircleActivity.class);
                 startActivity(intent);
 
             }
@@ -269,7 +268,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent(MyNavigationTutorial.this, InviteCodeActivity.class);
+                        Intent myIntent = new Intent( MyTour.this, InviteCodeActivity.class);
                         startActivity(myIntent);
 
                     }
@@ -279,7 +278,7 @@ public class MyNavigationTutorial extends AppCompatActivity
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent(MyNavigationTutorial.this, InviteCodeActivity.class);
+                Intent myIntent = new Intent( MyTour.this, InviteCodeActivity.class);
                 startActivity(myIntent);
 
             }
@@ -295,7 +294,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent(MyNavigationTutorial.this, JoinedCirclesActivity.class);
+                        Intent myIntent = new Intent( MyTour.this, JoinedCirclesActivity.class);
                         startActivity(myIntent);
                     }
                 });
@@ -305,7 +304,7 @@ public class MyNavigationTutorial extends AppCompatActivity
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent(MyNavigationTutorial.this, JoinedCirclesActivity.class);
+                Intent myIntent = new Intent( MyTour.this, JoinedCirclesActivity.class);
                 startActivity(myIntent);
             }
 
@@ -320,13 +319,13 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent(MyNavigationTutorial.this, SendHelpAlertsActivity.class);
+                        Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
                         startActivity(myIntent);
                     }
                 });
             } else {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent(MyNavigationTutorial.this, SendHelpAlertsActivity.class);
+                Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
                 startActivity(myIntent);
             }
 
@@ -343,7 +342,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                     public void onAdClosed() {
                         super.onAdClosed();
                         interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent(MyNavigationTutorial.this,AlertCenterActivity.class);
+                        Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
                         startActivity(myIntent);
                     }
                 });
@@ -351,7 +350,7 @@ public class MyNavigationTutorial extends AppCompatActivity
             else
             {
                 interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent(MyNavigationTutorial.this,AlertCenterActivity.class);
+                Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
                 startActivity(myIntent);
             }
 
@@ -435,14 +434,14 @@ public class MyNavigationTutorial extends AppCompatActivity
                 }
                 else
                 {
-                    Intent myIntent = new Intent(MyNavigationTutorial.this,LocationShareService.class);
+                    Intent myIntent = new Intent( MyTour.this,LocationShareService.class);
                     startService(myIntent);
                 }
 
 
                 break;
             case R.id.action_stop:
-                Intent myIntent2 = new Intent(MyNavigationTutorial.this,LocationShareService.class);
+                Intent myIntent2 = new Intent( MyTour.this,LocationShareService.class);
                 stopService(myIntent2);
                 reference.child(user.getUid()).child("issharing").setValue("false")
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -451,23 +450,15 @@ public class MyNavigationTutorial extends AppCompatActivity
                                 if(task.isSuccessful())
                                 {
                                     Toast.makeText(getApplicationContext(),"Location sharing is now stopped",Toast.LENGTH_SHORT).show();
-
-
                                 }
                                 else
                                 {
                                     Toast.makeText(getApplicationContext(),"Location sharing could not be stopped",Toast.LENGTH_SHORT).show();
                                 }
-
                             }
                         });
 
-
-
-
-
                 break;
-
 
         }
         return super.onOptionsItemSelected(item);
@@ -507,7 +498,7 @@ public class MyNavigationTutorial extends AppCompatActivity
                 public void onAdClosed() {
                     super.onAdClosed();
                     interstitialAd.loadAd(new AdRequest.Builder().build());
-                    Intent myIntent = new Intent(MyNavigationTutorial.this,InviteCodeActivity.class);
+                    Intent myIntent = new Intent( MyTour.this,InviteCodeActivity.class);
                     startActivity(myIntent);
                 }
             });
@@ -516,7 +507,7 @@ public class MyNavigationTutorial extends AppCompatActivity
         else
         {
             interstitialAd.loadAd(new AdRequest.Builder().build());
-            Intent myIntent = new Intent(MyNavigationTutorial.this,InviteCodeActivity.class);
+            Intent myIntent = new Intent( MyTour.this,InviteCodeActivity.class);
             startActivity(myIntent);
         }
 

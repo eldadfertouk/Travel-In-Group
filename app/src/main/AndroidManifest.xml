@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mytracker.gpstracker.familytrackerfamilytracker">
 
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name="com.mytracker.gpstracker.familytracker.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +58,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name="com.mytracker.gpstracker.familytracker.SendHelpAlertsActivity"></activity>
+        <activity android:name="com.mytracker.gpstracker.familytracker.SendHelpAlertsActivity" />
         <activity
             android:name="com.mytracker.gpstracker.familytracker.JoinCircleActivity"
             android:screenOrientation="portrait" />
@@ -86,9 +85,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.mytracker.gpstracker.familytracker.MyNavigationTutorial"
+            android:name="com.mytracker.gpstracker.familytracker.MyTour"
             android:label="@string/title_activity_my_navigation_tutorial"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

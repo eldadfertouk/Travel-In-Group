@@ -6,11 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -21,7 +21,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.ProviderQueryResult;
+
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class LoginEmailActivity extends AppCompatActivity {
@@ -86,8 +87,26 @@ public class LoginEmailActivity extends AppCompatActivity {
     {
         dialog.setMessage("Please wait!");
         dialog.show();
-       auth.fetchProvidersForEmail(e1_email.getText().toString())
-               .addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+       auth.fetchSignInMethodsForEmail (e1_email.getText().toString())
+               .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                   @Override
+                   public void onComplete(@androidx.annotation.NonNull Task<SignInMethodQueryResult> task) {
+                       boolean check = task.isSuccessful ();
+                       if(!check){
+                           dialog.dismiss();
+                           Toast.makeText(getApplicationContext(),"This email does not exist. Please create an account first",Toast.LENGTH_SHORT).show();
+
+                       }
+                       else {
+                           // go to password login
+                           dialog.dismiss();
+                           Intent myIntent = new Intent(LoginEmailActivity.this,LoginPasswordActivity.class);
+                           myIntent.putExtra("email_login",e1_email.getText().toString());
+                           startActivity(myIntent);
+                           finish();
+                       }
+                   }
+/*
                    @Override
                    public void onComplete(@NonNull Task<ProviderQueryResult> task) {
                        boolean check = !task.getResult().getProviders().isEmpty();
@@ -108,7 +127,7 @@ public class LoginEmailActivity extends AppCompatActivity {
 
 
                        }
-                   }
+                   }*/
                });
 
     }

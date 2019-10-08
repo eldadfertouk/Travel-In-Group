@@ -1,8 +1,8 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -53,7 +53,7 @@ public class JoinedMembersAdapter extends RecyclerView.Adapter<JoinedMembersAdap
 
          final CreateUser addCircle = nameList.get(position);
       // String name = nameList.get(position);
-        Picasso.with(c).load(addCircle.profile_image).placeholder(R.drawable.defaultprofile).into(holder.i1);
+        Picasso.get().load(addCircle.profile_image).placeholder(R.drawable.defaultprofile).into(holder.i1);
 
         holder.name_txt.setText(addCircle.name);
 
