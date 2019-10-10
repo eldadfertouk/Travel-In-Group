@@ -120,7 +120,7 @@ public class MyTour extends AppCompatActivity
 
            //aSwitch.setOnCheckedChangeListener(getApplicationContext());
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.frag_map);
+        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager ().findFragmentById(R.id.frag_map);
         mapFragment.getMapAsync(this);
 
 
