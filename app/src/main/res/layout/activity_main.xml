@@ -8,44 +8,48 @@
 
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ALREADY HAVE AN ACCOUNT?"
-        android:id="@+id/button"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:onClick="LoginUser"
         android:layout_above="@+id/button2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:onClick="LoginUser"
+        android:padding="10dp"
+        android:text="@string/account_exist"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEED NEW ACCOUNT?"
-        android:id="@+id/button2"
-        android:layout_marginBottom="122dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        android:padding="10dp"
-        android:onClick="getStarted_click"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="122dp"
+        android:onClick="getStarted_click"
+        android:padding="10dp"
+        android:text="@string/new_account"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="223dp"
         android:layout_height="239dp"
-        android:layout_alignStart="@+id/button2"
+        android:layout_above="@+id/button"
         android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="176dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="44dp"
-        app:srcCompat="@drawable/webp" />
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="223dp"
+        app:srcCompat="@drawable/mainpic" />
 
 
 </RelativeLayout>

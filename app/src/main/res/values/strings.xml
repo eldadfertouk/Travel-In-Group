@@ -39,4 +39,6 @@
     <string name="share_location">הפעלת שיתוף מיקום</string>
     <string name="stope_share_location">הפסקת שיתוף מיקום</string>
     <string name="send_alert_help">שידור אות מצוקה או חירום</string>
+    <string name="account_exist">חשבון קיים</string>
+    <string name="new_account">חשבון חדש</string>
 </resources>

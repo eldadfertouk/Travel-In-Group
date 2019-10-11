@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.mytracker.gpstracker.familytracker.MyTour">
 
-    <include layout="@layout/content_my_navigation_tutorial" />
+    <include layout="@layout/content_my_tour" />
 
 
 

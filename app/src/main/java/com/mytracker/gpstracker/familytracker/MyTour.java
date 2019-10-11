@@ -26,9 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -75,14 +72,13 @@ public class MyTour extends AppCompatActivity
     String myName, myEmail, myDate, mySharing,myProfileImage;
 
 
-    InterstitialAd interstitialAd;
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_my_navigation_tutorial);
+        setContentView( R.layout.activity_my_tour );
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Travel In Group");
         setSupportActionBar(toolbar);
@@ -191,7 +187,6 @@ public class MyTour extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.signout) {
             if (user != null) {
                 auth.signOut();
@@ -205,154 +200,44 @@ public class MyTour extends AppCompatActivity
             }
         } else if (id == R.id.joinCircle)
         {
-
-            if(interstitialAd.isLoaded())
-            {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener()
-                {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent( MyTour.this, JoinCircleActivity.class);
-                        startActivity(myIntent);
-
-                    }
-                });
-            }
-            else
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent( MyTour.this, JoinCircleActivity.class);
-                startActivity(myIntent);
-
+            Intent myIntent = new Intent( MyTour.this, JoinCircleActivity.class);
+            startActivity(myIntent);
             }
 
 
 
-        } else if (id == R.id.myCircle)
+
+         if (id == R.id.myCircle) {
+             Intent intent = new Intent ( MyTour.this, MyCircleActivity.class );
+             startActivity ( intent );
+
+         }
+
+         if (id == R.id.inviteFriends)
         {
-            if(interstitialAd.isLoaded())
-            {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener()
-                {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent intent = new Intent( MyTour.this, MyCircleActivity.class);
-                        startActivity(intent);
-
-                    }
-                });
-
-            }
-            else
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent intent = new Intent( MyTour.this, MyCircleActivity.class);
-                startActivity(intent);
-
+            Intent myIntent = new Intent( MyTour.this, InviteCodeActivity.class);
+            startActivity(myIntent);
             }
 
-        } else if (id == R.id.inviteFriends)
+        if (id == R.id.joinedCircle)
         {
-            if(interstitialAd.isLoaded())
-            {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener()
-                {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent( MyTour.this, InviteCodeActivity.class);
-                        startActivity(myIntent);
-
-                    }
-                });
-
-            }
-            else
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent( MyTour.this, InviteCodeActivity.class);
-                startActivity(myIntent);
-
-            }
-
-        } else if (id == R.id.joinedCircle)
-        {
-            if(interstitialAd.isLoaded())
-            {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener()
-                {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent( MyTour.this, JoinedCirclesActivity.class);
-                        startActivity(myIntent);
-                    }
-                });
-
-            }
-
-            else
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent( MyTour.this, JoinedCirclesActivity.class);
-                startActivity(myIntent);
-            }
-
+            Intent myIntent = new Intent( MyTour.this, JoinedCirclesActivity.class);
+            startActivity(myIntent);
         }
 
 
-        else if(id == R.id.sendHelpAlert) {
-            if (interstitialAd.isLoaded()) {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
-                        startActivity(myIntent);
-                    }
-                });
-            } else {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
-                startActivity(myIntent);
-            }
 
+
+         if(id == R.id.sendHelpAlert) {
+            Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
+            startActivity(myIntent);
         }
 
         else if(id == R.id.alertCenter)
         {
-            if(interstitialAd.isLoaded())
-            {
-                interstitialAd.show();
-                interstitialAd.setAdListener(new AdListener()
-                {
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        interstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
-                        startActivity(myIntent);
-                    }
-                });
-            }
-            else
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
-                startActivity(myIntent);
-            }
+            Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
+            startActivity(myIntent);
+
 
         }
 
@@ -466,7 +351,7 @@ public class MyTour extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_navigation_tutorial,menu);
+        getMenuInflater().inflate(R.menu.my_tour,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -488,28 +373,8 @@ public class MyTour extends AppCompatActivity
 
     public void inviteMembers(View v)
     {
-        interstitialAd.loadAd(new AdRequest.Builder().build());
-        if(interstitialAd.isLoaded())
-        {
-            interstitialAd.show();
-            interstitialAd.setAdListener(new AdListener()
-            {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    interstitialAd.loadAd(new AdRequest.Builder().build());
-                    Intent myIntent = new Intent( MyTour.this,InviteCodeActivity.class);
-                    startActivity(myIntent);
-                }
-            });
-
-        }
-        else
-        {
-            interstitialAd.loadAd(new AdRequest.Builder().build());
-            Intent myIntent = new Intent( MyTour.this,InviteCodeActivity.class);
-            startActivity(myIntent);
-        }
+        Intent myIntent = new Intent( MyTour.this,InviteCodeActivity.class);
+        startActivity(myIntent);
 
     }
 

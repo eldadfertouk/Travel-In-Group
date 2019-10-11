@@ -4,6 +4,8 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -33,7 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-
+    public final static String TAG="LiveMapActivity";
     GoogleMap mMap;
     LatLng friendLatLng;
     String latitude,longitude,name,userid,prevdate,prevImage;
@@ -90,11 +92,11 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-               CreateUser user = dataSnapshot.getValue(CreateUser.class);
-
-                Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
-
-
+               try{CreateUser user = dataSnapshot.getValue(CreateUser.class);
+                   Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
+               }catch (Exception e){
+                   Log.e(TAG,"ERROR: create user"+e.toString ()   );
+               }
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override

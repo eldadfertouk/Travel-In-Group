@@ -5,6 +5,7 @@
 
         <item
             android:id="@+id/joinCircle"
+
             android:title="@string/join_circle" />
 
         <item
