@@ -53,7 +53,7 @@ public class MyCircleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("My Circle");
+        toolbar.setTitle("הקבוצה שלי");
 
 
 

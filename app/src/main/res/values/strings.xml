@@ -41,4 +41,11 @@
     <string name="send_alert_help">שידור אות מצוקה או חירום</string>
     <string name="account_exist">חשבון קיים</string>
     <string name="new_account">חשבון חדש</string>
+    <string name="enter_invite_code">יש להקליד את קוד ההזמנה לקבוצה</string>
+    <string name="ask_your_friends_for_their_circle_code">בקש מחברים את הקוד שלהם והצטרף לקבוצתם</string>
+    <string name="submit">אישור הצטרפות</string>
+
+    <string name="by_signing_up_you_accept_our_terms_of_service_and_privacy_policy">לחיצה על המשך - מהווה אישור והסכמה לתנאי השימוש והפרטיות של היישום</string>
+    <string name="share_your_code_out_loud_or_send_it_in_a_message">שתפו את הקוד שלכם עם חברים והרחיבו את והרחיבו את קבוצת המטיילים שלך</string>
+    <string name="send_code">שליחת הקוד שלי</string>
 </resources>

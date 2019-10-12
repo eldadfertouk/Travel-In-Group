@@ -39,7 +39,7 @@ public class JoinCircleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_circle);
         toolbar = findViewById( R.id.toolbar);
-        toolbar.setTitle("Join a Circle");
+        toolbar.setTitle("הצטרף לקבוצה");
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 

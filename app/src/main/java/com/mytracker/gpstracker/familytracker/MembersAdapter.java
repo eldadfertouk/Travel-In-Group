@@ -26,9 +26,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by Haroon on 12/22/2017.
- */
+
 
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MembersViewHolder>
 {
@@ -116,15 +114,12 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MembersV
 
                 if(latitude_user.equals("na") && longitude_user.equals("na"))
                 {
-
-                            Toast.makeText(ctx,"This circle member is not sharing location.",Toast.LENGTH_SHORT).show();
-
-
+                    Toast.makeText(ctx,"המשתמש לא משתף מיקום",Toast.LENGTH_SHORT).show();
                 }
             else
                 {
                     Intent mYIntent = new Intent(ctx,LiveMapActivity.class);
-                   // mYIntent.putExtra("createuserobject",addCircle);
+                    //mYIntent.putExtra("createuserobject",addCircle);
                     mYIntent.putExtra("latitude",latitude_user);
                     mYIntent.putExtra("longitude",longitude_user);
                     mYIntent.putExtra("name",addCircle.name);
@@ -142,7 +137,6 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MembersV
         public boolean onMenuItemClick(MenuItem item) {
             int position = getAdapterPosition();
             final CreateUser addCircle = this.nameArrayList.get(position);
-
             mReference.child(addCircle.userid).removeValue()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -155,16 +149,13 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MembersV
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                         if(task.isSuccessful())
                                                         {
-                                                            Toast.makeText(ctx,"User removed from circle.",Toast.LENGTH_SHORT).show();
-
+                                                            Toast.makeText(ctx,"הוסר משתמש מהרשימה",Toast.LENGTH_SHORT).show();
                                                         }
                                                 }
                                             });
                                 }
                         }
                     });
-
-
             return false;
         }
 

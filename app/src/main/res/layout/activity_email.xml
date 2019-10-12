@@ -37,15 +37,15 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Next"
-            android:onClick="checkIfEmailPresent"
-            android:background="@drawable/button_shape"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="#FFFFFF"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_shape"
+            android:onClick="checkIfEmailPresent"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView"
@@ -54,7 +54,7 @@
             android:layout_above="@+id/button"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="6dp"
-            android:text="By signing up you accept our Terms of Service and Privacy Policy." />
+            android:text="@string/by_signing_up_you_accept_our_terms_of_service_and_privacy_policy" />
 
 
 </RelativeLayout>

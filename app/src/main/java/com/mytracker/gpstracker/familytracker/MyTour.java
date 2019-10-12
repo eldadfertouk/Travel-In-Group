@@ -85,18 +85,6 @@ public class MyTour extends AppCompatActivity
 
         auth = FirebaseAuth.getInstance();
 
-      /*  interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("");
-        interstitialAd.loadAd(new AdRequest.Builder().build());
-
-
-        if(interstitialAd.isLoaded())
-        {
-            interstitialAd.show();
-            interstitialAd.loadAd(new AdRequest.Builder().build());
-        }*/
-
-
 
         user = auth.getCurrentUser();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
