@@ -1,16 +1,10 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,12 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
+
+import java.util.Objects;
 
 public class LoginEmailActivity extends AppCompatActivity {
 
@@ -151,7 +151,7 @@ public class LoginEmailActivity extends AppCompatActivity {
                                             Toast.makeText(LoginEmailActivity.this,"Please check your email",Toast.LENGTH_LONG).show();
                                         }
                                         else {
-                                            Toast.makeText(LoginEmailActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                            Toast.makeText ( LoginEmailActivity.this, Objects.requireNonNull ( task.getException () ).getMessage (), Toast.LENGTH_LONG ).show ();
                                         }
                                     }
                                 });

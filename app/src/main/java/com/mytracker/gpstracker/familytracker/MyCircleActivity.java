@@ -1,13 +1,15 @@
 package com.mytracker.gpstracker.familytracker;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MyCircleActivity extends AppCompatActivity {
 
@@ -79,7 +82,7 @@ public class MyCircleActivity extends AppCompatActivity {
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 nameList.clear();
 
@@ -89,9 +92,9 @@ public class MyCircleActivity extends AppCompatActivity {
                     {
                         memberUserId = dss.child("circlememberid").getValue(String.class);
 
-                        usersReference.child(memberUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        usersReference.child ( Objects.requireNonNull ( memberUserId ) ).addListenerForSingleValueEvent ( new ValueEventListener () {
                             @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                 createUser = dataSnapshot.getValue(CreateUser.class);
                                 nameList.add(createUser);
@@ -99,7 +102,7 @@ public class MyCircleActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onCancelled(DatabaseError databaseError) {
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
                                Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -124,7 +127,7 @@ public class MyCircleActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

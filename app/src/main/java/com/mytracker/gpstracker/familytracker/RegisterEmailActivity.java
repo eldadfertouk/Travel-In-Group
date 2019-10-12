@@ -3,10 +3,7 @@ package com.mytracker.gpstracker.familytracker;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,11 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
+
+import java.util.Objects;
 
 public class RegisterEmailActivity extends AppCompatActivity {
 
@@ -86,7 +89,7 @@ public class RegisterEmailActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                         dialog.dismiss();
-                        boolean check = !task.getResult ().getSignInMethods ().isEmpty ();
+                        boolean check = !Objects.requireNonNull ( Objects.requireNonNull ( task.getResult () ).getSignInMethods () ).isEmpty ();
                         if(!check)
                         {
                             Intent myIntent = new Intent(RegisterEmailActivity.this,RegisterPasswordActivity.class);

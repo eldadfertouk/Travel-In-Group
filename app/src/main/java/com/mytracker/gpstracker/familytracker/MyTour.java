@@ -7,24 +7,21 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -41,6 +38,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,6 +50,7 @@ import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -105,7 +104,7 @@ public class MyTour extends AppCompatActivity
            //aSwitch.setOnCheckedChangeListener(getApplicationContext());
 
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager ().findFragmentById(R.id.frag_map);
-        mapFragment.getMapAsync(this);
+        Objects.requireNonNull ( mapFragment ).getMapAsync ( this );
 
 
 
@@ -125,14 +124,14 @@ public class MyTour extends AppCompatActivity
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 try {
-                    myDate = dataSnapshot.child(user.getUid()).child("date").getValue().toString();
-                    mySharing = dataSnapshot.child(user.getUid()).child("issharing").getValue().toString();
-                    myEmail = dataSnapshot.child(user.getUid()).child("email").getValue().toString();
-                    myName = dataSnapshot.child(user.getUid()).child("name").getValue().toString();
-                    myProfileImage = dataSnapshot.child(user.getUid()).child("profile_image").getValue().toString();
+                    myDate = Objects.requireNonNull ( dataSnapshot.child ( user.getUid () ).child ( "date" ).getValue () ).toString ();
+                    mySharing = Objects.requireNonNull ( dataSnapshot.child ( user.getUid () ).child ( "issharing" ).getValue () ).toString ();
+                    myEmail = Objects.requireNonNull ( dataSnapshot.child ( user.getUid () ).child ( "email" ).getValue () ).toString ();
+                    myName = Objects.requireNonNull ( dataSnapshot.child ( user.getUid () ).child ( "name" ).getValue () ).toString ();
+                    myProfileImage = Objects.requireNonNull ( dataSnapshot.child ( user.getUid () ).child ( "profile_image" ).getValue () ).toString ();
 
                     textName.setText(myName);
                     textEmail.setText(myEmail);
@@ -146,7 +145,7 @@ public class MyTour extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });

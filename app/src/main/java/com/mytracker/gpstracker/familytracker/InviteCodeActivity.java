@@ -3,14 +3,15 @@ package com.mytracker.gpstracker.familytracker;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
+
+import java.util.Objects;
 
 public class InviteCodeActivity extends AppCompatActivity {
 
@@ -85,14 +88,14 @@ public class InviteCodeActivity extends AppCompatActivity {
 
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     user = auth.getCurrentUser();
-                    String user_code = dataSnapshot.child(user.getUid()).child("circlecode").getValue().toString();
+                    String user_code = Objects.requireNonNull ( dataSnapshot.child ( Objects.requireNonNull ( user ).getUid () ).child ( "circlecode" ).getValue () ).toString ();
                     t4_code.setText(user_code);
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
@@ -129,7 +132,7 @@ public class InviteCodeActivity extends AppCompatActivity {
                    if(task.isSuccessful())
                    {
                        user = auth.getCurrentUser();
-                       CreateUser createUser = new CreateUser(name,email,password,date,code,user.getUid(),"false","na","na","defaultimage");
+                       CreateUser createUser = new CreateUser ( name, email, password, date, code, Objects.requireNonNull ( user ).getUid (), "false", "na", "na", "defaultimage" );
 
                        reference.child(user.getUid()).setValue(createUser)
                                .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -146,7 +149,7 @@ public class InviteCodeActivity extends AppCompatActivity {
 
                                                             if(task.isSuccessful())
                                                             {
-                                                                String downloadPath = task.getResult().getUploadSessionUri ().toString();
+                                                                String downloadPath = Objects.requireNonNull ( Objects.requireNonNull ( task.getResult () ).getUploadSessionUri () ).toString ();
                                                                 reference.child(user.getUid()).child("profile_image").setValue(downloadPath)
                                                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                             @Override

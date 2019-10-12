@@ -1,13 +1,14 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.goodiebag.pinview.Pinview;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
+
+import java.util.Objects;
 
 public class JoinCircleActivity extends AppCompatActivity {
 
@@ -60,17 +63,17 @@ public class JoinCircleActivity extends AppCompatActivity {
 
         currentReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                current_userid = dataSnapshot.child("userid").getValue().toString();
+                current_userid = Objects.requireNonNull ( dataSnapshot.child ( "userid" ).getValue () ).toString ();
 
 
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
@@ -89,7 +92,7 @@ public class JoinCircleActivity extends AppCompatActivity {
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
 
@@ -98,7 +101,7 @@ public class JoinCircleActivity extends AppCompatActivity {
                     {
                         createUser = childDss.getValue(CreateUser.class);
                     }
-                    joinUserId = createUser.userid;
+                    joinUserId = Objects.requireNonNull ( createUser ).userid;
 
                     circleReference = FirebaseDatabase.getInstance().getReference().child("Users").child(joinUserId).child("CircleMembers");
                     joinedReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("JoinedCircles");
@@ -148,7 +151,7 @@ public class JoinCircleActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

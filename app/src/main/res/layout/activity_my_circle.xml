@@ -39,6 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/recyclerview"
+        android:contentDescription="TODO"
         tools:ignore="VectorDrawableCompat" />
 
 

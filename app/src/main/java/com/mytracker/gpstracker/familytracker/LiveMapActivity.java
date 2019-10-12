@@ -1,15 +1,16 @@
 package com.mytracker.gpstracker.familytracker;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,8 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
-
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -76,7 +77,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        Objects.requireNonNull ( mapFragment ).getMapAsync ( this );
 
 
 
@@ -84,14 +85,14 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
         reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
                 Toast.makeText(getApplicationContext(),"onAdded",Toast.LENGTH_SHORT).show();
 
 
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
                try{CreateUser user = dataSnapshot.getValue(CreateUser.class);
                    Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
                }catch (Exception e){
@@ -100,7 +101,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                              myName = dataSnapshot.child("name").getValue(String.class);
                              myLat = dataSnapshot.child("lat").getValue(String.class);
                              myLng = dataSnapshot.child("lng").getValue(String.class);
@@ -130,7 +131,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
@@ -141,17 +142,17 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

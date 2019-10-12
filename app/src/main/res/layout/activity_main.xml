@@ -49,6 +49,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="223dp"
+        android:contentDescription="TODO"
         app:srcCompat="@drawable/mainpic" />
 
 
