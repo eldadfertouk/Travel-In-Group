@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.mytracker.gpstracker.familytracker.MyCircleActivity">
+    tools:context="com.mytracker.gpstracker.travelingingroup.MyCircleActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"

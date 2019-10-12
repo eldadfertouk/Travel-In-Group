@@ -1,4 +1,4 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.Objects;
 

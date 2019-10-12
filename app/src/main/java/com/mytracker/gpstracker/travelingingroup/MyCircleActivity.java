@@ -1,7 +1,8 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,71 +18,86 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class JoinedCirclesActivity extends AppCompatActivity {
+public class MyCircleActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
 
     RecyclerView recyclerView;
-    Toolbar toolbar;
 
     RecyclerView.Adapter recycleradapter;
     RecyclerView.LayoutManager layoutManager;
-
+    DatabaseReference reference;
     FirebaseAuth auth;
-    DatabaseReference joinedReference;
-    ArrayList<CreateUser> myList;
     FirebaseUser user;
-    DatabaseReference usersReference;
     CreateUser createUser;
+  //  String memberName,memberStatus,memberLat,memberLng;
+    ArrayList<CreateUser> nameList;
+
+  // AddCircle addCircle;
 
 
+    DatabaseReference usersReference;
+
+    ArrayList<String> circleuser_idList;
+    String memberUserId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_joined_circles);
-        recyclerView = findViewById(R.id.recyclerviewJoined);
+        setContentView( R.layout.activity_my_circle);
+        recyclerView = findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("מקושר לטיולים:");
-        setSupportActionBar(toolbar);
+        toolbar.setTitle("הקבוצה שלי");
 
+
+
+        setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null)
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        myList = new ArrayList<>();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        joinedReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("JoinedCircles");
+
+        nameList = new ArrayList<>();
+
+
+        circleuser_idList = new ArrayList<>();
+
+
         usersReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("CircleMembers");
 
-        joinedReference.addValueEventListener(new ValueEventListener() {
+
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                myList.clear();
+
+                nameList.clear();
 
                 if(dataSnapshot.exists())
                 {
                     for(DataSnapshot dss: dataSnapshot.getChildren())
                     {
+                        memberUserId = dss.child("circlememberid").getValue(String.class);
 
-                        String memberUserid = dss.child("circlememberid").getValue(String.class);
-
-                        usersReference.child ( Objects.requireNonNull ( memberUserid ) ).addListenerForSingleValueEvent ( new ValueEventListener () {
+                        usersReference.child ( Objects.requireNonNull ( memberUserId ) ).addListenerForSingleValueEvent ( new ValueEventListener () {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                 createUser = dataSnapshot.getValue(CreateUser.class);
-                                //  Toast.makeText(getApplicationContext(),createUser.name,Toast.LENGTH_SHORT).show();
-                                myList.add(createUser);
+                                nameList.add(createUser);
+                                recycleradapter.notifyDataSetChanged();
                             }
 
                             @Override
@@ -89,23 +105,21 @@ public class JoinedCirclesActivity extends AppCompatActivity {
                                Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
                     }
+                   Toast.makeText(getApplicationContext(),"מציג חברים בטיול",Toast.LENGTH_SHORT).show();
+                    recycleradapter = new MembersAdapter(nameList,getApplicationContext());
 
-                   Toast.makeText(getApplicationContext(),"מקושר לטיולים אלה:",Toast.LENGTH_SHORT).show();
-                    recycleradapter = new JoinedMembersAdapter(myList,getApplicationContext());
                     recyclerView.setAdapter(recycleradapter);
                     recycleradapter.notifyDataSetChanged();
 
 
                 }
+
                 else
                 {
-                   Toast.makeText(getApplicationContext(),"טרם הצטרפת לטיול",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"הרשימה ריקה,אין מטיילים",Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(null);
                 }
-
 
 
 
@@ -113,10 +127,10 @@ public class JoinedCirclesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),databaseError.toString(),Toast.LENGTH_LONG).show();
 
             }
         });
+
 
     }
 
@@ -127,4 +141,14 @@ public class JoinedCirclesActivity extends AppCompatActivity {
             finish();
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void refresh(View v)
+    {
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
 }

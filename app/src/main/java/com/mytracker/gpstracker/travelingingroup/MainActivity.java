@@ -1,13 +1,13 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 public class MainActivity extends AppCompatActivity {
 

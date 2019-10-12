@@ -1,4 +1,4 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -118,7 +117,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                         if(marker == null)
                         {
                             marker = mMap.addMarker(myOptions);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(friendLatLng,15));
+                            mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, 5 ) );
                         }
                         else
                         {
@@ -212,7 +211,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
             }
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(friendLatLng,15));
+        mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, 5 ) );
 
 
 

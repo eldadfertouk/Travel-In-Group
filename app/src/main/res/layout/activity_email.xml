@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context="com.mytracker.gpstracker.familytracker.RegisterEmailActivity">
+    tools:context="com.mytracker.gpstracker.travelingingroup.RegisterEmailActivity">
 
 
         <androidx.appcompat.widget.Toolbar

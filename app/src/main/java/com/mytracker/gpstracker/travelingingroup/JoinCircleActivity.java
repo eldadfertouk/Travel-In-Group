@@ -1,4 +1,4 @@
-package com.mytracker.gpstracker.familytracker;
+package com.mytracker.gpstracker.travelingingroup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.mytracker.gpstracker.familytrackerfamilytracker.R;
 
 import java.util.Objects;
 
