@@ -27,10 +27,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class HelpAlertsAdapter extends RecyclerView.Adapter<HelpAlertsAdapter.HelpAlertViewHolder> {
-    ArrayList<CreateUser> nameList = new ArrayList<> ();
-    Context c;
+    private ArrayList<CreateUser> nameList;
+    private Context c;
 
-    public HelpAlertsAdapter(ArrayList<CreateUser> nameList, Context c) {
+    HelpAlertsAdapter(ArrayList<CreateUser> nameList, Context c) {
         this.nameList = nameList;
         this.c = c;
     }
@@ -71,7 +71,7 @@ public class HelpAlertsAdapter extends RecyclerView.Adapter<HelpAlertsAdapter.He
         FirebaseAuth auth;
         FirebaseUser user;
 
-        public HelpAlertViewHolder(View itemView, Context ctx, ArrayList<CreateUser> nameArrayList) {
+        HelpAlertViewHolder(View itemView, Context ctx, ArrayList<CreateUser> nameArrayList) {
             super ( itemView );
             this.v = itemView;
             itemView.setOnClickListener ( this );
@@ -108,20 +108,13 @@ public class HelpAlertsAdapter extends RecyclerView.Adapter<HelpAlertsAdapter.He
                 mYIntent.putExtra ( "image", addCircle.profile_image );
                 mYIntent.setFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
                 ctx.startActivity ( mYIntent );
-
             }
-
-
         }
-
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-
-
             int position = getAdapterPosition ();
             final CreateUser addCircle = this.nameArrayList.get ( position );
-
             myReference.child ( addCircle.userid ).removeValue ()
                     .addOnCompleteListener ( new OnCompleteListener<Void> () {
                         @Override
@@ -133,18 +126,14 @@ public class HelpAlertsAdapter extends RecyclerView.Adapter<HelpAlertsAdapter.He
                             }
                         }
                     } );
-
-
             return false;
         }
-
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             MenuItem myActionItem = menu.add ( "REMOVE" );
             myActionItem.setOnMenuItemClickListener ( this );
         }
     }
-
 
 }
 

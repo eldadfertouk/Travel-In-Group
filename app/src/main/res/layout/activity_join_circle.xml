@@ -20,6 +20,7 @@
         android:gravity="center"
         android:text="@string/enter_invite_code"
         android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 
     <androidx.appcompat.widget.Toolbar
@@ -27,8 +28,9 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        android:background="@android:color/white"
+        app:logo="@mipmap/ic_launcher"
+        app:titleTextColor="?attr/colorPrimary">
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -58,6 +60,7 @@
         android:gravity="center"
         android:text="@string/ask_your_friends_for_their_circle_code"
         android:textSize="14sp"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 
     <Button

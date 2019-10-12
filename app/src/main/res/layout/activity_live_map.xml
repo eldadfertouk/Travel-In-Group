@@ -11,8 +11,9 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        android:background="@android:color/white"
+        app:logo="@mipmap/ic_launcher"
+        app:titleTextColor="?attr/colorPrimary">
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -23,7 +24,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar22"
         />
-
 
 
 </RelativeLayout>

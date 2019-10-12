@@ -112,7 +112,6 @@ public class MyCircleActivity extends AppCompatActivity {
                     recyclerView.setAdapter(recycleradapter);
                     recycleradapter.notifyDataSetChanged();
 
-
                 }
 
                 else
@@ -120,7 +119,6 @@ public class MyCircleActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"הרשימה ריקה,אין מטיילים",Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(null);
                 }
-
 
 
             }

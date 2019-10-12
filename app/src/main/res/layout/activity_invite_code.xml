@@ -12,8 +12,9 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        android:background="@android:color/white"
+        app:logo="@mipmap/ic_launcher"
+        app:titleTextColor="?attr/colorPrimary">
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -23,6 +24,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:text="@string/ask_your_friends_for_their_circle_code"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <TextView
@@ -43,23 +45,24 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/share_your_code_out_loud_or_send_it_in_a_message"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:background="@drawable/button_shape"
+        android:layout_width="185dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:layout_marginHorizontal="5dp"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:text="@string/send_code"
         android:layout_gravity="center"
-        android:onClick="sendCode"
-        android:textColor="#FFFF"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/button_shape"
+        android:onClick="sendCode"
+        android:text="@string/send_code"
+        android:textAllCaps="false"
+        android:textColor="#FFFF"
+        android:textSize="18sp"
 
         />
 
@@ -71,8 +74,9 @@
         android:onClick="Register"
         android:textSize="20sp"
         android:layout_gravity="center"
-        android:text="    Done"
+        android:text="@string/done"
         android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimaryDark"
        />
 
 

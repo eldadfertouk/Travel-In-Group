@@ -48,4 +48,6 @@
     <string name="by_signing_up_you_accept_our_terms_of_service_and_privacy_policy">לחיצה על המשך - מהווה אישור והסכמה לתנאי השימוש והפרטיות של היישום</string>
     <string name="share_your_code_out_loud_or_send_it_in_a_message">שתפו את הקוד שלכם עם חברים והרחיבו את והרחיבו את קבוצת המטיילים שלך</string>
     <string name="send_code">שליחת הקוד שלי</string>
+    <string name="location">מיקום</string>
+    <string name="done">סיימתי,חזור למסך ראשי</string>
 </resources>

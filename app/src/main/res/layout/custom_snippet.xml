@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:padding="10dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorMyWhite"
     android:layout_height="match_parent">
 
 
@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/colorPrimary"
         >
 
         <TextView
@@ -28,6 +29,7 @@
             android:text="@string/name"
             android:textAllCaps="true"
             android:textSize="22sp"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
         <TextView
@@ -37,6 +39,7 @@
             android:text="@string/last_seen"
             android:textAllCaps="false"
             android:textSize="17sp"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
     </LinearLayout>

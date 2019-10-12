@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,96 +36,84 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    public final static String TAG="LiveMapActivity";
+    public final static String TAG = "LiveMapActivity";
     GoogleMap mMap;
     LatLng friendLatLng;
-    String latitude,longitude,name,userid,prevdate,prevImage;
+    String latitude, longitude, name, userid, prevdate, prevImage;
     Toolbar toolbar;
     Marker marker;
     DatabaseReference reference;
     String myImage;
-
-    String myName,myLat,myLng,myDate;
+    FloatingActionButton mapZoom;
+    int zoomRange = 25;
+    String myName, myLat, myLng, myDate;
     ArrayList<String> mKeys;
     MarkerOptions myOptions;
+    View view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_live_map);
-        toolbar = findViewById(R.id.toolbar22);
-
-        myOptions = new MarkerOptions();
-        Intent intent = getIntent();
-        mKeys = new ArrayList<>();
-        if(intent!=null)
-        {
-            latitude=intent.getStringExtra("latitude");
-            longitude = intent.getStringExtra("longitude");
-            name = intent.getStringExtra("name");
-            userid = intent.getStringExtra("userid");
-            prevdate = intent.getStringExtra("date");
-            prevImage = intent.getStringExtra("image");
+        super.onCreate ( savedInstanceState );
+        setContentView ( R.layout.activity_live_map );
+        toolbar = findViewById ( R.id.toolbar22 );
+        myOptions = new MarkerOptions ();
+        Intent intent = getIntent ();
+        mKeys = new ArrayList<> ();
+        if (intent != null) {
+            latitude = intent.getStringExtra ( "latitude" );
+            longitude = intent.getStringExtra ( "longitude" );
+            name = intent.getStringExtra ( "name" );
+            userid = intent.getStringExtra ( "userid" );
+            prevdate = intent.getStringExtra ( "date" );
+            prevImage = intent.getStringExtra ( "image" );
         }
-        toolbar.setTitle(name + "'s Location");
-        setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null)
-        {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setTitle ( name + "'s Location" );
+        setSupportActionBar ( toolbar );
+        if (getSupportActionBar () != null) {
+            getSupportActionBar ().setDisplayHomeAsUpEnabled ( true );
+            getSupportActionBar ().setDisplayShowHomeEnabled ( true );
         }
-        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+
+        reference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" ).child ( userid );
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager ()
+                .findFragmentById ( R.id.map );
         Objects.requireNonNull ( mapFragment ).getMapAsync ( this );
-
-
-
-
-
-        reference.addChildEventListener(new ChildEventListener() {
+        reference.addChildEventListener ( new ChildEventListener () {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
-                Toast.makeText(getApplicationContext(),"onAdded",Toast.LENGTH_SHORT).show();
-
-
+                Toast.makeText ( getApplicationContext (), "onAdded", Toast.LENGTH_SHORT ).show ();
             }
-
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
-               try{CreateUser user = dataSnapshot.getValue(CreateUser.class);
-                   Toast.makeText(getApplicationContext(),dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
-               }catch (Exception e){
-                   Log.e(TAG,"ERROR: create user"+e.toString ()   );
-               }
-
-                reference.addValueEventListener(new ValueEventListener() {
+                try {
+                    CreateUser user = dataSnapshot.getValue ( CreateUser.class );
+                    Toast.makeText ( getApplicationContext (), dataSnapshot.getKey (), Toast.LENGTH_LONG ).show ();
+                } catch (Exception e) {
+                    Log.e ( TAG, "ERROR: create user" + e.toString () );
+                }
+                reference.addValueEventListener ( new ValueEventListener () {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                             myName = dataSnapshot.child("name").getValue(String.class);
-                             myLat = dataSnapshot.child("lat").getValue(String.class);
-                             myLng = dataSnapshot.child("lng").getValue(String.class);
-                             myDate = dataSnapshot.child("date").getValue(String.class);
-                             myImage = dataSnapshot.child("profile_image").getValue(String.class);
+                        myName = dataSnapshot.child ( "name" ).getValue ( String.class );
+                        myLat = dataSnapshot.child ( "lat" ).getValue ( String.class );
+                        myLng = dataSnapshot.child ( "lng" ).getValue ( String.class );
+                        myDate = dataSnapshot.child ( "date" ).getValue ( String.class );
+                        myImage = dataSnapshot.child ( "profile_image" ).getValue ( String.class );
 
 
-                        friendLatLng = new LatLng(Double.parseDouble(myLat),Double.parseDouble(myLng));
+                        friendLatLng = new LatLng ( Double.parseDouble ( myLat ), Double.parseDouble ( myLng ) );
 
-                        myOptions.position(friendLatLng);
-                        myOptions.snippet("Last seen: "+myDate);
-                        myOptions.title(myName);
+                        myOptions.position ( friendLatLng );
+                        myOptions.snippet ( "Last seen: " + myDate );
+                        myOptions.title ( myName );
 
-                        if(marker == null)
-                        {
-                            marker = mMap.addMarker(myOptions);
-                            mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, 5 ) );
+                        if (marker == null) {
+                            marker = mMap.addMarker ( myOptions );
+                            mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, zoomRange ) );
+                        } else {
+                            marker.setPosition ( friendLatLng );
                         }
-                        else
-                        {
-                            marker.setPosition(friendLatLng);
-                        }
-
-
 
 
                     }
@@ -133,28 +122,21 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                });
-
-
+                } );
 
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
-        });
+        } );
 
     }
 
@@ -162,7 +144,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+        mMap.setInfoWindowAdapter ( new GoogleMap.InfoWindowAdapter () {
             @Override
             public View getInfoWindow(Marker marker) {
 
@@ -171,56 +153,44 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public View getInfoContents(Marker marker) {
-                View row = getLayoutInflater().inflate(R.layout.custom_snippet,null);
-                TextView nameTxt = row.findViewById(R.id.snippetName);
-                TextView dateTxt = row.findViewById(R.id.snippetDate);
-                CircleImageView imageTxt = row.findViewById(R.id.snippetImage);
-                if(myName == null && myDate == null)
-                {
-                    nameTxt.setText(name);
-                    dateTxt.setText(dateTxt.getText().toString() + prevdate);
-                    Picasso.get().load(prevImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
-                }
-                else
-                {
-                    nameTxt.setText(myName);
-                    dateTxt.setText(dateTxt.getText().toString() + myDate);
-                    Picasso.get().load(myImage).placeholder(R.drawable.defaultprofile).into(imageTxt);
+                View row = getLayoutInflater ().inflate ( R.layout.custom_snippet, null );
+                TextView nameTxt = row.findViewById ( R.id.snippetName );
+                TextView dateTxt = row.findViewById ( R.id.snippetDate );
+                CircleImageView imageTxt = row.findViewById ( R.id.snippetImage );
+                if (myName == null && myDate == null) {
+                    nameTxt.setText ( name );
+                    dateTxt.setText ( dateTxt.getText ().toString () + prevdate );
+                    Picasso.get ().load ( prevImage ).placeholder ( R.drawable.defaultprofile ).into ( imageTxt );
+                } else {
+                    nameTxt.setText ( myName );
+                    dateTxt.setText ( dateTxt.getText ().toString () + myDate );
+                    Picasso.get ().load ( myImage ).placeholder ( R.drawable.defaultprofile ).into ( imageTxt );
                 }
 
 
                 return row;
             }
-        });
+        } );
+        friendLatLng = new LatLng ( Double.parseDouble ( latitude ), Double.parseDouble ( longitude ) );
+        MarkerOptions optionsnew = new MarkerOptions ();
+        optionsnew.position ( friendLatLng );
+        optionsnew.title ( name );
+        optionsnew.icon ( BitmapDescriptorFactory.defaultMarker ( BitmapDescriptorFactory.HUE_BLUE ) );
+        optionsnew.snippet ( "Last seen:" + prevdate );
 
-            friendLatLng = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
-            MarkerOptions optionsnew = new MarkerOptions();
-
-            optionsnew.position(friendLatLng);
-            optionsnew.title(name);
-        optionsnew.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-          //  optionsnew.snippet("Last seen:"+prevdate);
-
-            if(marker == null)
-            {
-                marker = mMap.addMarker(optionsnew);
-            }
-            else
-            {
-                marker.setPosition(friendLatLng);
-            }
-
-
-        mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, 5 ) );
-
-
-
+        if (marker == null) {
+            marker = mMap.addMarker ( optionsnew );
+        } else {
+            marker.setPosition ( friendLatLng );
+        }
+        mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, zoomRange ) );
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
-            finish();
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId () == android.R.id.home)
+            finish ();
+        return super.onOptionsItemSelected ( item );
     }
+
 }

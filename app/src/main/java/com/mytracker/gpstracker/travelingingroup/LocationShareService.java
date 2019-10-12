@@ -48,7 +48,7 @@ public class LocationShareService extends Service implements LocationListener, G
     public final int uniqueId = 654321;
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -163,11 +163,10 @@ public class LocationShareService extends Service implements LocationListener, G
     public void onDestroy() {
         LocationServices.FusedLocationApi.removeLocationUpdates(client,this);
         client.disconnect();
-      //  reference.child(user.getUid()).child("issharing").setValue("false");
+        reference.child ( user.getUid () ).child ( "issharing" ).setValue ( "false" );
 
         NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         nm.cancel(uniqueId);
-
 
 
     }

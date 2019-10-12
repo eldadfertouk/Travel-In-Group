@@ -8,6 +8,7 @@
     card_view:cardElevation="3dp"
     card_view:cardCornerRadius="12dp"
     card_view:contentPadding="4dp"
+    card_view:cardBackgroundColor="@color/colorPrimaryDark"
     android:foreground="?selectableItemBackground">
 
 
@@ -37,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="7"
                 android:layout_height="wrap_content"
-                android:text="Dubai"
+                android:text="@string/location"
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:textSize="22sp" />
