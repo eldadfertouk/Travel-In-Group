@@ -119,7 +119,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MembersV
             else
                 {
                     Intent mYIntent = new Intent(ctx,LiveMapActivity.class);
-                    //mYIntent.putExtra("createuserobject",addCircle);
+                    //mYIntent.putExtra("createuserobject", (Parcelable) addCircle );
                     mYIntent.putExtra("latitude",latitude_user);
                     mYIntent.putExtra("longitude",longitude_user);
                     mYIntent.putExtra("name",addCircle.name);

@@ -23,25 +23,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MyCircleActivity extends AppCompatActivity {
-
     Toolbar toolbar;
-
     RecyclerView recyclerView;
-
     RecyclerView.Adapter recycleradapter;
     RecyclerView.LayoutManager layoutManager;
     DatabaseReference reference;
     FirebaseAuth auth;
     FirebaseUser user;
     CreateUser createUser;
-  //  String memberName,memberStatus,memberLat,memberLng;
+    String memberName, memberStatus, memberLat, memberLng;
     ArrayList<CreateUser> nameList;
-
-  // AddCircle addCircle;
-
-
+    AddCircle addCircle;
     DatabaseReference usersReference;
-
     ArrayList<String> circleuser_idList;
     String memberUserId;
     @Override
@@ -56,9 +49,6 @@ public class MyCircleActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("הקבוצה שלי");
-
-
-
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null)
         {
@@ -66,40 +56,26 @@ public class MyCircleActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-
         nameList = new ArrayList<>();
-
-
         circleuser_idList = new ArrayList<>();
-
-
         usersReference = FirebaseDatabase.getInstance().getReference().child("Users");
-
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("CircleMembers");
-
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 nameList.clear();
-
                 if(dataSnapshot.exists())
                 {
                     for(DataSnapshot dss: dataSnapshot.getChildren())
                     {
                         memberUserId = dss.child("circlememberid").getValue(String.class);
-
                         usersReference.child ( Objects.requireNonNull ( memberUserId ) ).addListenerForSingleValueEvent ( new ValueEventListener () {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                                 createUser = dataSnapshot.getValue(CreateUser.class);
                                 nameList.add(createUser);
                                 recycleradapter.notifyDataSetChanged();
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
@@ -108,39 +84,26 @@ public class MyCircleActivity extends AppCompatActivity {
                     }
                    Toast.makeText(getApplicationContext(),"מציג חברים בטיול",Toast.LENGTH_SHORT).show();
                     recycleradapter = new MembersAdapter(nameList,getApplicationContext());
-
                     recyclerView.setAdapter(recycleradapter);
                     recycleradapter.notifyDataSetChanged();
-
                 }
-
                 else
                 {
                     Toast.makeText(getApplicationContext(),"הרשימה ריקה,אין מטיילים",Toast.LENGTH_SHORT).show();
                     recyclerView.setAdapter(null);
                 }
-
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-
-
     }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }
-
-
     public void refresh(View v)
     {
         finish();

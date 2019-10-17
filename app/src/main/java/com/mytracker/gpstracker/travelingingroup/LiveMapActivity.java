@@ -45,7 +45,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
     DatabaseReference reference;
     String myImage;
     FloatingActionButton mapZoom;
-    int zoomRange = 25;
+    int zoomRange = 50;
     String myName, myLat, myLng, myDate;
     ArrayList<String> mKeys;
     MarkerOptions myOptions;
@@ -67,7 +67,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
             prevdate = intent.getStringExtra ( "date" );
             prevImage = intent.getStringExtra ( "image" );
         }
-        toolbar.setTitle ( name + "'s Location" );
+        toolbar.setTitle ( name + "'המיקום של:" );
         setSupportActionBar ( toolbar );
         if (getSupportActionBar () != null) {
             getSupportActionBar ().setDisplayHomeAsUpEnabled ( true );
@@ -82,7 +82,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
         reference.addChildEventListener ( new ChildEventListener () {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
-                Toast.makeText ( getApplicationContext (), "onAdded", Toast.LENGTH_SHORT ).show ();
+                Toast.makeText ( getApplicationContext (), "INFO:onAdded", Toast.LENGTH_SHORT ).show ();
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
@@ -100,31 +100,21 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                         myLng = dataSnapshot.child ( "lng" ).getValue ( String.class );
                         myDate = dataSnapshot.child ( "date" ).getValue ( String.class );
                         myImage = dataSnapshot.child ( "profile_image" ).getValue ( String.class );
-
-
                         friendLatLng = new LatLng ( Double.parseDouble ( myLat ), Double.parseDouble ( myLng ) );
-
                         myOptions.position ( friendLatLng );
-                        myOptions.snippet ( "Last seen: " + myDate );
+                        myOptions.snippet ( "נראה לאחרונה: " + myDate );
                         myOptions.title ( myName );
-
                         if (marker == null) {
                             marker = mMap.addMarker ( myOptions );
                             mMap.moveCamera ( CameraUpdateFactory.newLatLngZoom ( friendLatLng, zoomRange ) );
                         } else {
                             marker.setPosition ( friendLatLng );
                         }
-
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 } );
-
-
             }
 
             @Override
@@ -143,14 +133,11 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         mMap.setInfoWindowAdapter ( new GoogleMap.InfoWindowAdapter () {
             @Override
             public View getInfoWindow(Marker marker) {
-
                 return null;
             }
-
             @Override
             public View getInfoContents(Marker marker) {
                 View row = getLayoutInflater ().inflate ( R.layout.custom_snippet, null );
@@ -160,14 +147,12 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
                 if (myName == null && myDate == null) {
                     nameTxt.setText ( name );
                     dateTxt.setText ( dateTxt.getText ().toString () + prevdate );
-                    Picasso.get ().load ( prevImage ).placeholder ( R.drawable.defaultprofile ).into ( imageTxt );
+                    Picasso.get ().load ( myImage ).placeholder ( R.drawable.defaultprofile ).into ( imageTxt );
                 } else {
                     nameTxt.setText ( myName );
                     dateTxt.setText ( dateTxt.getText ().toString () + myDate );
                     Picasso.get ().load ( myImage ).placeholder ( R.drawable.defaultprofile ).into ( imageTxt );
                 }
-
-
                 return row;
             }
         } );
@@ -176,7 +161,7 @@ public class LiveMapActivity extends AppCompatActivity implements OnMapReadyCall
         optionsnew.position ( friendLatLng );
         optionsnew.title ( name );
         optionsnew.icon ( BitmapDescriptorFactory.defaultMarker ( BitmapDescriptorFactory.HUE_BLUE ) );
-        optionsnew.snippet ( "Last seen:" + prevdate );
+        optionsnew.snippet ( "נראה לאחרונה:" + prevdate );
 
         if (marker == null) {
             marker = mMap.addMarker ( optionsnew );

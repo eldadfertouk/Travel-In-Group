@@ -81,7 +81,6 @@ public class HelpAlertsAdapter extends RecyclerView.Adapter<HelpAlertsAdapter.He
             auth = FirebaseAuth.getInstance ();
             user = auth.getCurrentUser ();
             myReference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" ).child ( user.getUid () ).child ( "HelpAlerts" );
-
             alertImageView = itemView.findViewById ( R.id.alertImage );
             alertNameTxt = itemView.findViewById ( R.id.alertName );
             alertDateTxt = itemView.findViewById ( R.id.alertDate );

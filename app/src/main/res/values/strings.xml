@@ -31,8 +31,8 @@
     <string name="create_new_account">יצירת חשבון משתמש חדש</string>
     <string name="enter_email_address">הזינו כתובת דואר אלקטרוני פעילה</string>
     <string name="forgot_password">שכחתי סיסמה</string>
-    <string name="invite_members_to_the_tour">קוד זה משמש לצירוף מטיילים נוספים לקבוצתך, שלחו את הקוד למשתמשים שרוצים לצרף</string>
-    <string name="sharing_the_code"> שתפו את הקוד עם משתמשים נוספים באמצעות הודעה</string>
+    <string name="invite_members_to_the_tour">אם במקום מספרים,מוצגים 6 איקסים, אין חיבור לרשת האינטרנט, נסו שנית לאחר חיבור לרשת!קוד זה משמש לצירוף מטיילים נוספים לקבוצתך, שלחו את הקוד למשתמשים שרוצים לצרף</string>
+    <string name="sharing_the_code">,אם במקום מספרים,מוצגים 6 איקסים, אין חיבור לרשת האינטרנט, נסו שנית לאחר חיבור לרשת, שתפו את הקוד עם משתמשים נוספים באמצעות הודעה</string>
     <string name="name">שם</string>
     <string name="email">כתובת דואל</string>
     <string name="last_seen">נראה לאחרונה בשעה</string>

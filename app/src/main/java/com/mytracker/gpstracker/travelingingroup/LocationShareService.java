@@ -92,15 +92,11 @@ public class LocationShareService extends Service implements LocationListener, G
         notification.setContentText("מיקומך גלוי ומשותף כעת !");
         notification.setDefaults(Notification.DEFAULT_SOUND);
 
-
         Intent intent = new Intent(getApplicationContext(), MyTour.class);
-
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-
         notification.setContentIntent(pendingIntent);
-
         // Build the nofification
 
         NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);

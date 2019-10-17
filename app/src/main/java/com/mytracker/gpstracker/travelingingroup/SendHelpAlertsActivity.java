@@ -3,6 +3,7 @@ package com.mytracker.gpstracker.travelingingroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static java.lang.Thread.MIN_PRIORITY;
 import static java.lang.Thread.sleep;
 
 public class SendHelpAlertsActivity extends AppCompatActivity {
-
     TextView t1_CounterTxt;
     int countValue = 5;
     Thread myThread;
@@ -33,12 +34,19 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
     FirebaseUser user;
     String memberUserId;
     ArrayList<String> userIDsList;
-
+    Button cancelButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_send_help_alerts );
         t1_CounterTxt = findViewById ( R.id.textView9 );
+        cancelButton = findViewById ( R.id.ash_bt_cancel );
+        cancelButton.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                setCancel ( view );
+            }
+        } );
         auth = FirebaseAuth.getInstance ();
         userIDsList = new ArrayList<> ();
         user = auth.getCurrentUser ();
@@ -48,16 +56,15 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
         myThread = new Thread ( new ServerThread () );
         myThread.start ();
     }
-
     public void setCancel(View v) {
-
         Toast.makeText ( getApplicationContext (), "ההתראה בוטלה !!!", Toast.LENGTH_SHORT ).show ();
-        myThread.interrupt ();
         Intent myIntent = new Intent ( SendHelpAlertsActivity.this, MyTour.class );
         startActivity ( myIntent );
+        if (myThread.isAlive ()) {
+            myThread.setPriority ( MIN_PRIORITY );
+        }
         finish ();
     }
-
     private class ServerThread implements Runnable {
         @Override
         public void run() {
@@ -74,7 +81,6 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
                     } );
 
                 }
-
                 runOnUiThread ( new Runnable () {
                     @Override
                     public void run() {
@@ -104,18 +110,14 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
                                                 } );
                                     }
                                 }
-
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 Toast.makeText ( getApplicationContext (), databaseError.getMessage (), Toast.LENGTH_SHORT ).show ();
                             }
                         } );
-
                     }
                 } );
-
             } catch (Exception e) {
                 Toast.makeText ( getApplicationContext (), "משהו השתבש בתהליך השליחה,לא נשלחו התראות,נסה ערוץ חירום אחר", Toast.LENGTH_SHORT ).show ();
             }

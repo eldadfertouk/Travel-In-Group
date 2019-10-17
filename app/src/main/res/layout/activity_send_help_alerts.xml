@@ -61,7 +61,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/ash_bt_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView10"
@@ -78,7 +78,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button5"
+        android:layout_below="@+id/ash_bt_cancel"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"

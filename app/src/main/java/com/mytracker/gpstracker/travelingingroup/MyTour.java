@@ -80,10 +80,7 @@ public class MyTour extends AppCompatActivity
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Travel In Group");
         setSupportActionBar(toolbar);
-
         auth = FirebaseAuth.getInstance();
-
-
         user = auth.getCurrentUser();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -100,7 +97,7 @@ public class MyTour extends AppCompatActivity
         textEmail = header.findViewById(R.id.emailTxt);
         circleImageView = header.findViewById(R.id.imageView2);
 
-           //aSwitch.setOnCheckedChangeListener(getApplicationContext());
+        // aSwitch.setOnCheckedChangeListener(getApplicationContext());
 
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager ().findFragmentById(R.id.frag_map);
         Objects.requireNonNull ( mapFragment ).getMapAsync ( this );
@@ -190,9 +187,6 @@ public class MyTour extends AppCompatActivity
             startActivity(myIntent);
             }
 
-
-
-
          if (id == R.id.myCircle) {
              Intent intent = new Intent ( MyTour.this, MyCircleActivity.class );
              startActivity ( intent );
@@ -211,9 +205,6 @@ public class MyTour extends AppCompatActivity
             startActivity(myIntent);
         }
 
-
-
-
          if(id == R.id.sendHelpAlert) {
             Intent myIntent = new Intent( MyTour.this, SendHelpAlertsActivity.class);
             startActivity(myIntent);
@@ -224,9 +215,7 @@ public class MyTour extends AppCompatActivity
             Intent myIntent = new Intent( MyTour.this,AlertCenterActivity.class);
             startActivity(myIntent);
 
-
         }
-
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -281,7 +270,7 @@ public class MyTour extends AppCompatActivity
 
         latLngCurrent = new LatLng(location.getLatitude(), location.getLongitude());
         if (marker == null) {
-            marker = mMap.addMarker(new MarkerOptions().position(latLngCurrent).title("Current Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            marker = mMap.addMarker ( new MarkerOptions ().position ( latLngCurrent ).title ( "מיקומ נוכחי" ).icon ( BitmapDescriptorFactory.defaultMarker ( BitmapDescriptorFactory.HUE_BLUE ) ) );
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCurrent, 15));
 
 
@@ -301,14 +290,13 @@ public class MyTour extends AppCompatActivity
 
                 if(isServiceRunning(getApplicationContext(),LocationShareService.class))
                 {
-                    Toast.makeText(getApplicationContext(),"You are already sharing your location.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText ( getApplicationContext (), "שיתוף מיקום כבר מופעל", Toast.LENGTH_SHORT ).show ();
                 }
                 else
                 {
                     Intent myIntent = new Intent( MyTour.this,LocationShareService.class);
                     startService(myIntent);
                 }
-
 
                 break;
             case R.id.action_stop:
@@ -320,11 +308,11 @@ public class MyTour extends AppCompatActivity
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful())
                                 {
-                                    Toast.makeText(getApplicationContext(),"Location sharing is now stopped",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText ( getApplicationContext (), "שיתוף מיקום הופסק", Toast.LENGTH_SHORT ).show ();
                                 }
                                 else
                                 {
-                                    Toast.makeText(getApplicationContext(),"Location sharing could not be stopped",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText ( getApplicationContext (), "לא ניתן להפסיק שיתוף מיקום,הופעלה התראת חירום", Toast.LENGTH_SHORT ).show ();
                                 }
                             }
                         });
@@ -343,14 +331,12 @@ public class MyTour extends AppCompatActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
         if(requestCode==1000)
         {
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
             {
-                Toast.makeText(getApplicationContext(),"Location permission granted. Thankyou.",Toast.LENGTH_SHORT).show();
+                Toast.makeText ( getApplicationContext (), "ניתנה הרשאת שיתוף מיקום,תודה", Toast.LENGTH_SHORT ).show ();
                 onConnected(null);
-
             }
         }
 
@@ -368,12 +354,7 @@ public class MyTour extends AppCompatActivity
     public boolean isServiceRunning(Context c,Class<?> serviceClass)
     {
         ActivityManager activityManager = (ActivityManager)c.getSystemService(Context.ACTIVITY_SERVICE);
-
-
         List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
-
-
-
         for(ActivityManager.RunningServiceInfo runningServiceInfo : services)
         {
             if(runningServiceInfo.service.getClassName().equals(serviceClass.getName()))
@@ -381,9 +362,7 @@ public class MyTour extends AppCompatActivity
                 return true;
             }
         }
-
         return false;
-
 
     }
 
