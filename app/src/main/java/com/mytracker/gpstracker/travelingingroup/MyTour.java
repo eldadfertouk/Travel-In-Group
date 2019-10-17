@@ -67,10 +67,7 @@ public class MyTour extends AppCompatActivity
     TextView textName, textEmail;
     Marker marker;
     CircleImageView circleImageView;
-    String myName, myEmail, myDate, mySharing,myProfileImage;
-
-
-
+    private String myName, myEmail, myDate, mySharing, myProfileImage;
     Toolbar toolbar;
 
     @Override

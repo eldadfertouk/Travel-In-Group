@@ -29,7 +29,7 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
     TextView t1_CounterTxt;
     int countValue = 5;
     Thread myThread;
-    DatabaseReference circlereference, usersReference, joinedCirclesReference;
+    DatabaseReference circlereference, usersReference, joinedCirclesReference, helpAlertReference;
     FirebaseAuth auth;
     FirebaseUser user;
     String memberUserId;
@@ -37,6 +37,7 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
     Button cancelButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        countValue = 5;
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_send_help_alerts );
         t1_CounterTxt = findViewById ( R.id.textView9 );
@@ -52,20 +53,23 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
         user = auth.getCurrentUser ();
         circlereference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" ).child ( user.getUid () ).child ( "CircleMembers" );
         joinedCirclesReference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" ).child ( user.getUid () ).child ( "JoinedCircles" );
+        helpAlertReference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" ).child ( user.getUid () ).child ( "HelpAlerts" );
         usersReference = FirebaseDatabase.getInstance ().getReference ().child ( "Users" );
         myThread = new Thread ( new ServerThread () );
         myThread.start ();
     }
     public void setCancel(View v) {
-        Toast.makeText ( getApplicationContext (), "ההתראה בוטלה !!!", Toast.LENGTH_SHORT ).show ();
-        Intent myIntent = new Intent ( SendHelpAlertsActivity.this, MyTour.class );
-        startActivity ( myIntent );
         if (myThread.isAlive ()) {
+            countValue = 99;
             myThread.setPriority ( MIN_PRIORITY );
+            Toast.makeText ( getApplicationContext (), "ההתראה בוטלה !!!", Toast.LENGTH_SHORT ).show ();
+            Intent myIntent = new Intent ( SendHelpAlertsActivity.this, MyTour.class );
+            startActivity ( myIntent );
+            finish ();
         }
-        finish ();
     }
     private class ServerThread implements Runnable {
+
         @Override
         public void run() {
             try {//do some heavy task here on main separate thread like: Saving files in directory, any server operation or any heavy task
@@ -79,12 +83,12 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
                             countValue = countValue - 1;
                         }
                     } );
-
                 }
                 runOnUiThread ( new Runnable () {
+
                     @Override
                     public void run() {
-                        circlereference.addValueEventListener ( new ValueEventListener () {
+                        joinedCirclesReference.addValueEventListener ( new ValueEventListener () {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 userIDsList.clear ();
@@ -93,29 +97,36 @@ public class SendHelpAlertsActivity extends AppCompatActivity {
                                     userIDsList.add ( memberUserId );
                                 }
                                 if (userIDsList.isEmpty ()) {
-                                    Toast.makeText ( getApplicationContext (), "אין מטיילים בקבוצה , הוסף מטיילים", Toast.LENGTH_SHORT ).show ();
+                                    Toast.makeText ( getApplicationContext (), "טרם הצטרפת לטיול,יש להצטרף לטיול", Toast.LENGTH_SHORT ).show ();
                                 } else {
-                                    CircleJoin circleJoin = new CircleJoin ( user.getUid () );
-                                    for (int i = 0; i < userIDsList.size (); i++) {
-                                        usersReference.child ( userIDsList.get ( i ) ).child ( "HelpAlerts" ).child ( user.getUid () ).setValue ( circleJoin )
-                                                .addOnCompleteListener ( new OnCompleteListener<Void> () {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful ()) {
-                                                            Toast.makeText ( getApplicationContext (), "התראת חירום ואיתור נשלחה בהצלחה", Toast.LENGTH_SHORT ).show ();
-                                                        } else {
-                                                            Toast.makeText ( getApplicationContext (), "לא ניתן לשלוח התראה,בדוק חיבורים ונסה שוב", Toast.LENGTH_SHORT ).show ();
+                                    if (countValue != 99) {
+                                        CircleJoin circleJoin = new CircleJoin ( user.getUid () );
+                                        for (int i = 0; i < userIDsList.size (); i++) {
+                                            usersReference.child ( userIDsList.get ( i ) ).child ( "HelpAlerts" ).child ( user.getUid () ).setValue ( circleJoin )
+                                                    .addOnCompleteListener ( new OnCompleteListener<Void> () {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful ()) {
+                                                                Toast.makeText ( getApplicationContext (), "התראת חירום ואיתור נשלחה בהצלחה", Toast.LENGTH_SHORT ).show ();
+                                                            } else {
+                                                                Toast.makeText ( getApplicationContext (), "לא ניתן לשלוח התראה,בדוק חיבורים ונסה שוב", Toast.LENGTH_SHORT ).show ();
+                                                            }
                                                         }
-                                                    }
-                                                } );
+                                                    } );
+                                        }
+                                    } else {
+                                        Toast.makeText ( getApplicationContext (), "התראת חירום בוטלה-לא נשלחו התראות", Toast.LENGTH_SHORT ).show ();
                                     }
+
                                 }
                             }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 Toast.makeText ( getApplicationContext (), databaseError.getMessage (), Toast.LENGTH_SHORT ).show ();
                             }
                         } );
+
                     }
                 } );
             } catch (Exception e) {
